@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.tabs.TabLayoutMediator
+import uz.itschool.elera.databinding.FragmentBodyBinding
+import uz.itschool.elera.util.MyViewPagerAdapter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,21 +35,51 @@ class BodyFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_body, container, false)
+    ): View {
+        val binding = FragmentBodyBinding.inflate(inflater, container, false)
+        val tabLayout = binding.bodyTabLayout
+        val viewPager2 = binding.bodyViewPager
+        viewPager2.adapter = MyViewPagerAdapter(
+            parentFragmentManager,
+            lifecycle,
+            arrayListOf(
+                HomeFragment(),
+                MyCourseFragment(),
+                InboxFragment(),
+                StoreFragment(),
+                ProfileFragment()
+            )
+        )
+
+        TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
+            when (position){
+                0->{
+                    tab.text = "Home"
+                    tab.setIcon(R.drawable.home_icon)
+                }
+                1->{
+                    tab.text = "My course"
+                    tab.setIcon(R.drawable.my_course_icon)
+                }
+                2->{
+                    tab.text = "Inbox"
+                    tab.setIcon(R.drawable.inbox_icon)
+                }
+                3->{
+                    tab.text = "Store"
+                    tab.setIcon(R.drawable.store_icon)
+                }
+                else->{
+                    tab.text = "Profile"
+                    tab.setIcon(R.drawable.profile_icon)
+                }
+            }
+        }.attach()
+
+        return binding.root
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BodyFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             BodyFragment().apply {
