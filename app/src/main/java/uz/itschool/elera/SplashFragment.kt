@@ -16,23 +16,20 @@ class SplashFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentSplashBinding.inflate(inflater, container, false)
-
         var animation =
             AnimationUtils.loadAnimation(requireContext(), R.anim.logo_anim)
         binding.logo.startAnimation(animation)
 
-        animation = AnimationUtils.loadAnimation(requireContext(), R.anim.loading_icon_anim)
+        animation = AnimationUtils.loadAnimation(requireContext(), R.anim.rotate_anim)
         animation.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(p0: Animation?) {}
-
             override fun onAnimationEnd(p0: Animation?) {
                 findNavController().navigate(R.id.action_splashFragment_to_bodyFragment)
             }
-
             override fun onAnimationRepeat(p0: Animation?) {}
-
         })
         binding.loadingIcon.startAnimation(animation)
+
         return binding.root
     }
 }
