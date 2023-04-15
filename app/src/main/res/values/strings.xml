@@ -5,4 +5,9 @@
     <string name="menu_of_the_body">menu of the body</string>
     <string name="good_morning">Good Morning 👋</string>
     <string name="andrew_ainsley">Andrew Ainsley</string>
+    <string name="get_a_discount_for_every_course_order_nonly_valid_for_today">Get a discount for every course order!\nOnly valid for today!</string>
+    <string name="today_s_special">Today\'s special</string>
+    <string name="off">40% OFF</string>
+    <string name="top_mentors">Top mentors</string>
+    <string name="see_all">See all</string>
 </resources>
