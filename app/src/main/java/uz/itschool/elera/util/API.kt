@@ -24,6 +24,7 @@ class API private constructor(context: Context) {
             return instance!!
         }
     }
+
     fun hasData() {
         val hasData = shared.getString("hasData", "")
         if (hasData == "yes") return
@@ -163,7 +164,7 @@ class API private constructor(context: Context) {
         val course1 = Course(
             "3D design illustration",
             Category.ThreeDDESIGN,
-            "",
+            "https://cdn.dribbble.com/users/4835348/screenshots/16676475/media/41b0fdefcfa0608fa9b48aa48a8ed957.png?compress=1&resize=400x300",
             arrayListOf(48),
             2,
             30,
@@ -174,7 +175,7 @@ class API private constructor(context: Context) {
         val course2 = Course(
             "3D design",
             Category.ThreeDDESIGN,
-            "",
+            "https://c.s-microsoft.com/en-us/CMSImages/All-in-One_1040x585.jpg?version=15692d40-cc47-8fe4-2366-334f32795879",
             arrayListOf(80, 48),
             2,
             15,
@@ -185,7 +186,7 @@ class API private constructor(context: Context) {
         val course3 = Course(
             "CRM management",
             Category.BUSINESS,
-            "",
+            "https://blog.kms-solutions.asia/hubfs/UI%20UX%20DESIGN%20FOR%20SUPER%20APPS.jpg",
             arrayListOf(20),
             2,
             30,
@@ -196,7 +197,7 @@ class API private constructor(context: Context) {
         val course4 = Course(
             "Flutter mobile",
             Category.MOBILE,
-            "",
+            "https://cdn.dribbble.com/users/4835348/screenshots/16676475/media/41b0fdefcfa0608fa9b48aa48a8ed957.png?compress=1&resize=400x300",
             arrayListOf(48),
             2,
             24,
@@ -207,7 +208,7 @@ class API private constructor(context: Context) {
         val course5 = Course(
             "Management",
             Category.BUSINESS,
-            "",
+            "https://c.s-microsoft.com/en-us/CMSImages/All-in-One_1040x585.jpg?version=15692d40-cc47-8fe4-2366-334f32795879",
             arrayListOf(45, 15),
             3,
             30,
@@ -218,7 +219,7 @@ class API private constructor(context: Context) {
         val course6 = Course(
             "Flutter desktop",
             Category.MOBILE,
-            "",
+            "https://blog.kms-solutions.asia/hubfs/UI%20UX%20DESIGN%20FOR%20SUPER%20APPS.jpg",
             arrayListOf(48),
             2,
             30,
@@ -229,7 +230,7 @@ class API private constructor(context: Context) {
         val course7 = Course(
             "Website UI/UX",
             Category.UIUX,
-            "",
+            "https://c.s-microsoft.com/en-us/CMSImages/All-in-One_1040x585.jpg?version=15692d40-cc47-8fe4-2366-334f32795879",
             arrayListOf(85, 50),
             2,
             0,
@@ -240,7 +241,7 @@ class API private constructor(context: Context) {
         val course8 = Course(
             "AI for complete beginner",
             Category.AI,
-            "",
+            "https://cdn.dribbble.com/users/4835348/screenshots/16676475/media/41b0fdefcfa0608fa9b48aa48a8ed957.png?compress=1&resize=400x300",
             arrayListOf(48),
             2,
             15,
@@ -251,7 +252,7 @@ class API private constructor(context: Context) {
         val course9 = Course(
             "AIa (advanced)",
             Category.AI,
-            "",
+            "https://blog.kms-solutions.asia/hubfs/UI%20UX%20DESIGN%20FOR%20SUPER%20APPS.jpg",
             arrayListOf(60, 30),
             2,
             30,
@@ -262,7 +263,7 @@ class API private constructor(context: Context) {
         val course10 = Course(
             "UI/UX",
             Category.UIUX,
-            "",
+            "https://cdn.dribbble.com/users/4835348/screenshots/16676475/media/41b0fdefcfa0608fa9b48aa48a8ed957.png?compress=1&resize=400x300",
             arrayListOf(75),
             2,
             45,
@@ -331,24 +332,28 @@ class API private constructor(context: Context) {
 
         edit.putString("hasData", "yes").apply()
     }
+
     fun getMentors(): ArrayList<Mentor> {
         val data: String = shared.getString(mentorsString, "")!!
         val typeToken = object : TypeToken<ArrayList<Mentor>>() {}.type
         if (data == "") return ArrayList()
         return gson.fromJson(data, typeToken)
     }
+
     fun getUsers(): ArrayList<User> {
         val data: String = shared.getString(usersString, "")!!
         val typeToken = object : TypeToken<ArrayList<User>>() {}.type
         if (data == "") return ArrayList()
         return gson.fromJson(data, typeToken)
     }
+
     fun getCourses(): ArrayList<Course> {
         val data: String = shared.getString(coursesString, "")!!
         val typeToken = object : TypeToken<ArrayList<Course>>() {}.type
         if (data == "") return ArrayList()
         return gson.fromJson(data, typeToken)
     }
+
     fun getReviews(): ArrayList<Review> {
         val data: String = shared.getString(reviewsString, "")!!
         val typeToken = object : TypeToken<ArrayList<Review>>() {}.type
