@@ -5,8 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import androidx.recyclerview.widget.LinearLayoutManager
 import uz.itschool.elera.databinding.FragmentHomeBinding
-import uz.itschool.elera.util.MyViewPagerAdapter
+import uz.itschool.elera.home.CourseRecyclerAdapter
+import uz.itschool.elera.home.MentorsRecyclerAdapter
+import uz.itschool.elera.util.API
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,7 +40,65 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val api = API.newInstance(requireContext())
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        binding.bookMarkIv.setOnClickListener {
+            val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.button_press_anim)
+            animation.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(p0: Animation?) {}
+                override fun onAnimationRepeat(p0: Animation?) {}
+                override fun onAnimationEnd(p0: Animation?) {
+
+                }
+            })
+            binding.bookMarkIv.startAnimation(animation)
+        }
+        binding.notificationsIv.setOnClickListener {
+            val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.button_press_anim)
+            animation.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(p0: Animation?) {}
+                override fun onAnimationRepeat(p0: Animation?) {}
+                override fun onAnimationEnd(p0: Animation?) {
+
+                }
+            })
+            binding.notificationsIv.startAnimation(animation)
+        }
+        binding.offerView.setOnClickListener {
+            val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.button_press_anim)
+            binding.notificationsIv.startAnimation(animation)
+        }
+        binding.mentorsSeeAll.setOnClickListener {
+            val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.button_press_anim)
+            animation.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(p0: Animation?) {}
+                override fun onAnimationRepeat(p0: Animation?) {}
+                override fun onAnimationEnd(p0: Animation?) {
+
+                }
+            })
+            binding.mentorsSeeAll.startAnimation(animation)
+        }
+        binding.coursesSeeAll.setOnClickListener {
+            val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.button_press_anim)
+            animation.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(p0: Animation?) {}
+                override fun onAnimationRepeat(p0: Animation?) {}
+                override fun onAnimationEnd(p0: Animation?) {
+
+                }
+            })
+            binding.coursesSeeAll.startAnimation(animation)
+        }
+
+        binding.mentorsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.mentorsRecyclerView.adapter = MentorsRecyclerAdapter(api.getMentors())
+
+
+        binding.coursesRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.coursesRecyclerView.adapter = CourseRecyclerAdapter(api.getCourses())
+
 
         return binding.root
     }

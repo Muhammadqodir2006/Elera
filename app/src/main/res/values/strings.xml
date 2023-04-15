@@ -10,4 +10,16 @@
     <string name="off">40% OFF</string>
     <string name="top_mentors">Top mentors</string>
     <string name="see_all">See all</string>
+    <string name="name">Name</string>
+    <string name="top_courses">Top courses</string>
+    <string name="notifications">Notifications</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="_40">40%</string>
+    <string name="_12_232_students">12 232 students</string>
+    <string name="q">|</string>
+    <string name="_4_8">4.8</string>
+    <string name="_80">80 $</string>
+    <string name="_48">48 $</string>
+    <string name="_3d_design_illustration">3D design illustration</string>
+    <string name="_3d_design">3D design</string>
 </resources>
