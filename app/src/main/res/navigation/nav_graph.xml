@@ -24,10 +24,14 @@
         tools:layout="@layout/fragment_body" >
         <action
             android:id="@+id/action_bodyFragment_to_notificationsFragment"
-            app:destination="@id/notificationsFragment" />
+            app:destination="@id/notificationsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_bodyFragment_to_bookmarksFragment"
-            app:destination="@id/bookmarksFragment" />
+            app:destination="@id/bookmarksFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/notificationsFragment"

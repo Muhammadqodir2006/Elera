@@ -40,7 +40,7 @@ class BodyFragment : Fragment() {
         val tabLayout = binding.bodyTabLayout
         val viewPager2 = binding.bodyViewPager
         viewPager2.adapter = MyViewPagerAdapter(
-            parentFragmentManager,
+            childFragmentManager,
             lifecycle,
             arrayListOf(
                 HomeFragment(),

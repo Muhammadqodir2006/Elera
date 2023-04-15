@@ -1,11 +1,12 @@
 package uz.itschool.elera.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import androidx.fragment.app.Fragment
 import uz.itschool.elera.R
 import uz.itschool.elera.databinding.FragmentNotificationsBinding
 
@@ -39,7 +40,15 @@ class NotificationsFragment : Fragment() {
         val binding = FragmentNotificationsBinding.inflate(inflater, container, false)
 
         binding.notificationsBackArrow.setOnClickListener {
-            findNavController().navigate(R.id.action_bodyFragment_to_notificationsFragment)
+            val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.button_press_anim)
+            animation.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(p0: Animation?) {}
+                override fun onAnimationRepeat(p0: Animation?) {}
+                override fun onAnimationEnd(p0: Animation?) {
+                    requireActivity().onBackPressedDispatcher.onBackPressed()
+                }
+            })
+            binding.notificationsBackArrow.startAnimation(animation)
         }
         return binding.root
     }

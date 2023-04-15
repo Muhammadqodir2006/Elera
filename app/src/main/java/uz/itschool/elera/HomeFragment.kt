@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import uz.itschool.elera.databinding.FragmentHomeBinding
 import uz.itschool.elera.home.CourseRecyclerAdapter
@@ -49,7 +50,7 @@ class HomeFragment : Fragment() {
                 override fun onAnimationStart(p0: Animation?) {}
                 override fun onAnimationRepeat(p0: Animation?) {}
                 override fun onAnimationEnd(p0: Animation?) {
-
+                    findNavController().navigate(R.id.action_bodyFragment_to_bookmarksFragment)
                 }
             })
             binding.bookMarkIv.startAnimation(animation)
@@ -60,14 +61,14 @@ class HomeFragment : Fragment() {
                 override fun onAnimationStart(p0: Animation?) {}
                 override fun onAnimationRepeat(p0: Animation?) {}
                 override fun onAnimationEnd(p0: Animation?) {
-
+                    findNavController().navigate(R.id.action_bodyFragment_to_notificationsFragment)
                 }
             })
             binding.notificationsIv.startAnimation(animation)
         }
         binding.offerView.setOnClickListener {
             val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.button_press_anim)
-            binding.notificationsIv.startAnimation(animation)
+            binding.offerView.startAnimation(animation)
         }
         binding.mentorsSeeAll.setOnClickListener {
             val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.button_press_anim)
