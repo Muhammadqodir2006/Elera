@@ -9,12 +9,14 @@ import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import uz.itschool.elera.databinding.FragmentSplashBinding
+import uz.itschool.elera.util.API
 
 class SplashFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         val binding = FragmentSplashBinding.inflate(inflater, container, false)
         var animation =
             AnimationUtils.loadAnimation(requireContext(), R.anim.logo_anim)
@@ -24,7 +26,7 @@ class SplashFragment : Fragment() {
         animation.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(p0: Animation?) {}
             override fun onAnimationEnd(p0: Animation?) {
-                findNavController().navigate(R.id.action_splashFragment_to_bodyFragment)
+                check()
             }
             override fun onAnimationRepeat(p0: Animation?) {}
         })
@@ -32,4 +34,12 @@ class SplashFragment : Fragment() {
 
         return binding.root
     }
+
+    private fun check() {
+        val api = API.newInstance()
+        api.hasData()
+
+        findNavController().navigate(R.id.action_splashFragment_to_bodyFragment)
+    }
+
 }
