@@ -55,23 +55,23 @@ class BodyFragment : Fragment() {
             when (position){
                 0->{
                     tab.text = "Home"
-                    tab.setIcon(R.drawable.home_icon)
+                    tab.setIcon(R.drawable.home_ic)
                 }
                 1->{
                     tab.text = "My course"
-                    tab.setIcon(R.drawable.my_course_icon)
+                    tab.setIcon(R.drawable.my_courses_ic)
                 }
                 2->{
                     tab.text = "Inbox"
-                    tab.setIcon(R.drawable.inbox_icon)
+                    tab.setIcon(R.drawable.inbox_ic)
                 }
                 3->{
                     tab.text = "Store"
-                    tab.setIcon(R.drawable.store_icon)
+                    tab.setIcon(R.drawable.store_ic)
                 }
                 else->{
                     tab.text = "Profile"
-                    tab.setIcon(R.drawable.profile_icon)
+                    tab.setIcon(R.drawable.profile_ic)
                 }
             }
         }.attach()
