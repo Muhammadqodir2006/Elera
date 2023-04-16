@@ -1,6 +1,7 @@
 package uz.itschool.elera.util
 
 import android.content.Context
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -54,41 +55,49 @@ class API private constructor(context: Context) {
         return gson.fromJson(data, typeToken)
     }
 
-    fun getRating(course: Course, reviewS:ArrayList<Review>): Double {
-        val reviews = reviewS
-        for (i in reviews){
-            if (i.course != course){
-                reviews.remove(i)
+    fun getRating(course: Course, reviewS: ArrayList<Review>): Double {
+        if (reviewS.isEmpty()) return 0.0
+        val myReviews = arrayListOf<Review>()
+        for (i in reviewS) {
+            if (i.course == course) {
+                myReviews.add(i)
             }
         }
         var sum = 0
         var c = 0
-        for (i in reviews){
+        for (i in myReviews) {
             sum += i.score
             c++
         }
-        return sum/c.toDouble()
+        return sum / c.toDouble()
     }
 
     fun getStudentsCount(course: Course): Int {
         // TODO : WRITE THE CODE
         return 22345
     }
+
     fun getBookmarks(): ArrayList<Course> {
         val data: String = shared.getString(bookmarkString, "")!!
+        if (data == "") {
+            return ArrayList()
+        }
         val typeToken = object : TypeToken<ArrayList<Course>>() {}.type
-        if (data == "") return ArrayList()
         return gson.fromJson(data, typeToken)
     }
+
     fun updateBookmarks(course: Course): Boolean {
+        Log.d("TAG1", "1: ")
         val bookmarks = getBookmarks()
-        return if (bookmarks.contains(course)){
+        Log.d("TAG1", bookmarks.toString())
+        return if (bookmarks.contains(course)) {
             bookmarks.remove(course)
-            edit.putString(bookmarkString, gson.toJson(bookmarks))
+            edit.putString(bookmarkString, gson.toJson(bookmarks)).apply()
             false
-        }else{
+        } else {
+            Log.d("TAG1", "add bookmark: ")
             bookmarks.add(course)
-            edit.putString(bookmarkString, gson.toJson(bookmarks))
+            edit.putString(bookmarkString, gson.toJson(bookmarks)).apply()
             true
         }
     }

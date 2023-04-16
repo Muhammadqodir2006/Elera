@@ -1,5 +1,6 @@
 package uz.itschool.elera.home
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Paint
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
+import coil.transform.CircleCropTransformation
 import uz.itschool.elera.R
 import uz.itschool.elera.databinding.HomeCourseItemBinding
 import uz.itschool.elera.util.API
@@ -46,17 +48,22 @@ class CourseRecyclerAdapter(private var courses: ArrayList<Course>, private val 
         )
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val course = courses[position]
-        holder.image.load(course.image)
+        holder.image.load(course.image){
+            placeholder(R.drawable.img)
+            error(R.drawable.no_internet)
+            transformations(CircleCropTransformation())
+        }
         holder.category.text = course.category.namE
         holder.namE.text = course.name
-        holder.price.text = course.prices[course.prices.last()].toString()
+        holder.price.text = "${course.prices.last()} $"
         holder.rating.text = api.getRating(course, reviews).toString().substring(0, 3)
         holder.studentNum.text = api.getStudentsCount(course).toString()
+        holder.oldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
         if (course.prices.size > 1) {
-            holder.oldPrice.text = course.prices[course.prices.lastIndex - 1].toString()
-            holder.oldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            holder.oldPrice.text = course.prices[course.prices.lastIndex - 1].toString() + " $"
         } else {
             holder.oldPrice.visibility = View.INVISIBLE
         }
