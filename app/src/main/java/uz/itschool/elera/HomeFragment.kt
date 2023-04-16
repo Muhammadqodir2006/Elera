@@ -1,5 +1,6 @@
 package uz.itschool.elera
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import uz.itschool.elera.home.CourseRecyclerAdapter
 import uz.itschool.elera.home.MentorsRecyclerAdapter
 import uz.itschool.elera.util.API
 import uz.itschool.elera.util.AnimHelper
+import uz.itschool.elera.util.Category
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -68,24 +70,28 @@ class HomeFragment : Fragment() {
             binding.offerView.startAnimation(animation)
         }
 
-        animHelper.animate(
-            requireContext(),
-            binding.mentorsSeeAll,
-            R.anim.button_press_anim,
-            object : AnimHelper.EndAction {
-                override fun endAction() {
-                    // TODO: go to all mentors
-                }
-            })
-        animHelper.animate(
-            requireContext(),
-            binding.coursesSeeAll,
-            R.anim.button_press_anim,
-            object : AnimHelper.EndAction {
-                override fun endAction() {
-                    // TODO: go to all courses
-                }
-            })
+        binding.mentorsSeeAll.setOnClickListener {
+            animHelper.animate(
+                requireContext(),
+                binding.mentorsSeeAll,
+                R.anim.button_press_anim,
+                object : AnimHelper.EndAction {
+                    override fun endAction() {
+                        // TODO: go to all mentors
+                    }
+                })
+        }
+        binding.coursesSeeAll.setOnClickListener {
+            animHelper.animate(
+                requireContext(),
+                binding.coursesSeeAll,
+                R.anim.button_press_anim,
+                object : AnimHelper.EndAction {
+                    override fun endAction() {
+                        // TODO: go to all courses
+                    }
+                })
+        }
 
 
 
@@ -93,16 +99,37 @@ class HomeFragment : Fragment() {
         binding.mentorsRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.mentorsRecyclerView.adapter =
-            MentorsRecyclerAdapter(api.getMentors(), animHelper, requireContext())
+            MentorsRecyclerAdapter(api.getMentors(), animHelper, requireContext(), object :MentorsRecyclerAdapter.OnPressed{
+                override fun onPressed() {
+                    findNavController().navigate(R.id.action_bodyFragment_to_mentorFragment)
+                }
+
+            })
 
 
         binding.coursesRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.coursesRecyclerView.adapter =
+        val courseAdapter =
             CourseRecyclerAdapter(api.getCourses(), api, animHelper, requireContext())
+        binding.coursesRecyclerView.adapter = courseAdapter
 
-        binding.categoryRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.categoryRecyclerView.adapter = CategoryRecyclerAdapter()
+
+
+        binding.categoryRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.categoryRecyclerView.adapter =
+            CategoryRecyclerAdapter(object : CategoryRecyclerAdapter.OnCategoryChanged {
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onCategoryChanged(category: Category?) {
+                    val new = if (category == null) {
+                        api.getCourses()
+                    } else {
+                        api.getCourses(category)
+                    }
+                    courseAdapter.courses = new
+                    courseAdapter.notifyDataSetChanged()
+                }
+            })
 
         return binding.root
     }

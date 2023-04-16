@@ -1,10 +1,10 @@
 package uz.itschool.elera
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import uz.itschool.elera.databinding.FragmentBodyBinding
 import uz.itschool.elera.util.MyViewPagerAdapter
@@ -52,21 +52,31 @@ class BodyFragment : Fragment() {
         )
 
         TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
-            when (position){
-                0->{
+            when (position) {
+                0 -> {
                     tab.setIcon(R.drawable.home_ic)
+                    tab.view.layoutParams =
+                        ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 50)
                 }
-                1->{
+                1 -> {
                     tab.setIcon(R.drawable.my_courses_ic)
+                    tab.view.layoutParams =
+                        ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 50)
                 }
-                2->{
+                2 -> {
                     tab.setIcon(R.drawable.inbox_ic)
+                    tab.view.layoutParams =
+                        ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 50)
                 }
-                3->{
+                3 -> {
                     tab.setIcon(R.drawable.store_ic)
+                    tab.view.layoutParams =
+                        ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 50)
                 }
-                else->{
+                else -> {
                     tab.setIcon(R.drawable.profile_ic)
+                    tab.view.layoutParams =
+                        ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 50)
                 }
             }
         }.attach()

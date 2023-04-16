@@ -17,7 +17,8 @@ import uz.itschool.elera.util.Mentor
 class MentorsRecyclerAdapter(
     var mentorsList: ArrayList<Mentor>,
     private val animHelper: AnimHelper,
-    private val context: Context
+    private val context: Context,
+    val onPressed: OnPressed
 ) : RecyclerView.Adapter<MentorsRecyclerAdapter.MyViewHolder>() {
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val image = itemView.findViewById<ImageView>(R.id.home_mentor_item_image)
@@ -53,11 +54,14 @@ class MentorsRecyclerAdapter(
                 R.anim.button_press_anim,
                 object : AnimHelper.EndAction {
                     override fun endAction() {
-                        // TODO: go to the mentor detail screen
+//                        onPressed.onPressed()
                     }
 
                 })
         }
+    }
+    interface OnPressed{
+        fun onPressed()
     }
 
 }

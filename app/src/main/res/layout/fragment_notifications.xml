@@ -24,12 +24,12 @@
         android:text="@string/notifications"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/notifications_back_arrow"
-        app:layout_constraintEnd_toStartOf="@+id/appCompatImageView"
+        app:layout_constraintEnd_toStartOf="@+id/bookmarks_more"
         app:layout_constraintStart_toEndOf="@+id/notifications_back_arrow"
         app:layout_constraintTop_toTopOf="@+id/notifications_back_arrow" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/appCompatImageView"
+        android:id="@+id/bookmarks_more"
         android:layout_width="42dp"
         android:layout_height="42dp"
         android:layout_marginTop="16dp"

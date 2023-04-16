@@ -9,8 +9,9 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import uz.itschool.elera.R
 import uz.itschool.elera.databinding.HomeCategoryItemBinding
+import uz.itschool.elera.util.Category
 
-class CategoryRecyclerAdapter : RecyclerView.Adapter<CategoryRecyclerAdapter.MyViewHolder>() {
+class CategoryRecyclerAdapter(val onCategoryChanged: OnCategoryChanged) : RecyclerView.Adapter<CategoryRecyclerAdapter.MyViewHolder>() {
 
     var selectedPos = 0
     var old = 0
@@ -59,10 +60,22 @@ class CategoryRecyclerAdapter : RecyclerView.Adapter<CategoryRecyclerAdapter.MyV
             }
         }
         holder.itemView.setOnClickListener {
-            old = selectedPos
-            selectedPos = position
-            notifyItemChanged(selectedPos)
-            notifyItemChanged(old)
+            if (position != selectedPos){
+                old = selectedPos
+                selectedPos = position
+                notifyItemChanged(selectedPos)
+                notifyItemChanged(old)
+                if (position == 0){
+                    onCategoryChanged.onCategoryChanged(null)
+                }else{
+                    onCategoryChanged.onCategoryChanged(Category.values()[position-1])
+                }
+            }
+
+
         }
+    }
+    interface OnCategoryChanged{
+        fun onCategoryChanged(category: Category?)
     }
 }

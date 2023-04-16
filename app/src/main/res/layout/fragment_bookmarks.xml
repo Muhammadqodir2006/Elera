@@ -23,12 +23,12 @@
         android:text="@string/bookmarks"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/bookmarks_back_arrow"
-        app:layout_constraintEnd_toStartOf="@+id/appCompatImageView"
+        app:layout_constraintEnd_toStartOf="@+id/bookmarks_more"
         app:layout_constraintStart_toEndOf="@+id/bookmarks_back_arrow"
         app:layout_constraintTop_toTopOf="@+id/bookmarks_back_arrow" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/appCompatImageView"
+        android:id="@+id/bookmarks_more"
         android:layout_width="42dp"
         android:layout_height="42dp"
         android:layout_marginTop="16dp"
@@ -37,13 +37,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bookmarks_reycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:src="@drawable/nothing_yet"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/bookmarks_back_arrow" />
 
 
 

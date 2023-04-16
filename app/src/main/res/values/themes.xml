@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/ubuntu_regular</item>
         <item name="android:textColor">@color/text_color1</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
 
     </style>
 </resources>

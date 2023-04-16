@@ -11,14 +11,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
-import coil.transform.CircleCropTransformation
 import uz.itschool.elera.R
 import uz.itschool.elera.databinding.HomeCourseItemBinding
 import uz.itschool.elera.util.API
 import uz.itschool.elera.util.AnimHelper
 import uz.itschool.elera.util.Course
 
-class CourseRecyclerAdapter(private var courses: ArrayList<Course>, private val api: API, private val animHelper: AnimHelper, val context: Context) :
+class CourseRecyclerAdapter(var courses: ArrayList<Course>, private val api: API, private val animHelper: AnimHelper, val context: Context) :
     RecyclerView.Adapter<CourseRecyclerAdapter.MyViewHolder>() {
     private val reviews = api.getReviews()
     private val bookmarks = api.getBookmarks()
@@ -54,7 +53,6 @@ class CourseRecyclerAdapter(private var courses: ArrayList<Course>, private val 
         holder.image.load(course.image){
             placeholder(R.drawable.img)
             error(R.drawable.no_internet)
-            transformations(CircleCropTransformation())
         }
         holder.category.text = course.category.namE
         holder.namE.text = course.name
