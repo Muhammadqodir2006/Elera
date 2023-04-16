@@ -5,9 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     tools:context=".home.BookmarksFragment">
-    <androidx.appcompat.widget.AppCompatImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/bookmarks_back_arrow"
         android:layout_width="42dp"
+        android:clickable="true"
         android:layout_height="42dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -20,7 +21,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/bookmarks"
-        android:textColor="#B3000000"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/bookmarks_back_arrow"
         app:layout_constraintEnd_toStartOf="@+id/appCompatImageView"
@@ -38,9 +38,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:src="@drawable/nothing_yet"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:src="@drawable/nothing_yet"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         tools:ignore="ContentDescription" />

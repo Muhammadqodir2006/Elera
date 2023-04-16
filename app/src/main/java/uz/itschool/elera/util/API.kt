@@ -3,7 +3,6 @@ package uz.itschool.elera.util
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import uz.itschool.elera.MainActivity
 
 class API private constructor(context: Context) {
     private val shared = context.getSharedPreferences("data", 0)
@@ -14,6 +13,8 @@ class API private constructor(context: Context) {
     private val usersString = "users"
     private val coursesString = "courses"
     private val reviewsString = "reviews"
+    private val bookmarkString = "bookmarks"
+
 
     companion object {
         private var instance: API? = null
@@ -24,6 +25,74 @@ class API private constructor(context: Context) {
             return instance!!
         }
     }
+
+    fun getMentors(): ArrayList<Mentor> {
+        val data: String = shared.getString(mentorsString, "")!!
+        val typeToken = object : TypeToken<ArrayList<Mentor>>() {}.type
+        if (data == "") return ArrayList()
+        return gson.fromJson(data, typeToken)
+    }
+
+    fun getUsers(): ArrayList<User> {
+        val data: String = shared.getString(usersString, "")!!
+        val typeToken = object : TypeToken<ArrayList<User>>() {}.type
+        if (data == "") return ArrayList()
+        return gson.fromJson(data, typeToken)
+    }
+
+    fun getCourses(): ArrayList<Course> {
+        val data: String = shared.getString(coursesString, "")!!
+        val typeToken = object : TypeToken<ArrayList<Course>>() {}.type
+        if (data == "") return ArrayList()
+        return gson.fromJson(data, typeToken)
+    }
+
+    fun getReviews(): ArrayList<Review> {
+        val data: String = shared.getString(reviewsString, "")!!
+        val typeToken = object : TypeToken<ArrayList<Review>>() {}.type
+        if (data == "") return ArrayList()
+        return gson.fromJson(data, typeToken)
+    }
+
+    fun getRating(course: Course, reviewS:ArrayList<Review>): Double {
+        val reviews = reviewS
+        for (i in reviews){
+            if (i.course != course){
+                reviews.remove(i)
+            }
+        }
+        var sum = 0
+        var c = 0
+        for (i in reviews){
+            sum += i.score
+            c++
+        }
+        return sum/c.toDouble()
+    }
+
+    fun getStudentsCount(course: Course): Int {
+        // TODO : WRITE THE CODE
+        return 22345
+    }
+    fun getBookmarks(): ArrayList<Course> {
+        val data: String = shared.getString(bookmarkString, "")!!
+        val typeToken = object : TypeToken<ArrayList<Course>>() {}.type
+        if (data == "") return ArrayList()
+        return gson.fromJson(data, typeToken)
+    }
+    fun updateBookmarks(course: Course): Boolean {
+        val bookmarks = getBookmarks()
+        return if (bookmarks.contains(course)){
+            bookmarks.remove(course)
+            edit.putString(bookmarkString, gson.toJson(bookmarks))
+            false
+        }else{
+            bookmarks.add(course)
+            edit.putString(bookmarkString, gson.toJson(bookmarks))
+            true
+        }
+    }
+
 
     fun hasData() {
         val hasData = shared.getString("hasData", "")
@@ -286,8 +355,8 @@ class API private constructor(context: Context) {
             Review("Zo'r, malades", 5, user1, course3),
             Review("Zo'r, malades", 4, user2, course4),
             Review("Zo'r, malades", 3, user3, course4),
-            Review("Zo'r, malades", 4, user4, course5),
-            Review("Zo'r, malades", 2, user5, course5),
+            Review("Zo'r, malades", 4, user4, course4),
+            Review("Zo'r, malades", 2, user5, course4),
             Review("Zo'r, malades", 4, user6, course6),
             Review("Zo'r, malades", 4, user7, course6),
             Review("Zo'r, malades", 5, user8, course6),
@@ -332,34 +401,5 @@ class API private constructor(context: Context) {
 
         edit.putString("hasData", "yes").apply()
     }
-
-    fun getMentors(): ArrayList<Mentor> {
-        val data: String = shared.getString(mentorsString, "")!!
-        val typeToken = object : TypeToken<ArrayList<Mentor>>() {}.type
-        if (data == "") return ArrayList()
-        return gson.fromJson(data, typeToken)
-    }
-
-    fun getUsers(): ArrayList<User> {
-        val data: String = shared.getString(usersString, "")!!
-        val typeToken = object : TypeToken<ArrayList<User>>() {}.type
-        if (data == "") return ArrayList()
-        return gson.fromJson(data, typeToken)
-    }
-
-    fun getCourses(): ArrayList<Course> {
-        val data: String = shared.getString(coursesString, "")!!
-        val typeToken = object : TypeToken<ArrayList<Course>>() {}.type
-        if (data == "") return ArrayList()
-        return gson.fromJson(data, typeToken)
-    }
-
-    fun getReviews(): ArrayList<Review> {
-        val data: String = shared.getString(reviewsString, "")!!
-        val typeToken = object : TypeToken<ArrayList<Review>>() {}.type
-        if (data == "") return ArrayList()
-        return gson.fromJson(data, typeToken)
-    }
-
 
 }

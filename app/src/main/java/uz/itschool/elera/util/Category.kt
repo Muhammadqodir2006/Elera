@@ -1,6 +1,6 @@
 package uz.itschool.elera.util
 
-enum class Category(namE:String) {
+enum class Category(val namE:String) {
     ThreeDDESIGN("3D Design"),
     BUSINESS("Business"),
     TwoDDESIGN("2D Design"),

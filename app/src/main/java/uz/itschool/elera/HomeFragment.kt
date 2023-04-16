@@ -13,6 +13,7 @@ import uz.itschool.elera.databinding.FragmentHomeBinding
 import uz.itschool.elera.home.CourseRecyclerAdapter
 import uz.itschool.elera.home.MentorsRecyclerAdapter
 import uz.itschool.elera.util.API
+import uz.itschool.elera.util.AnimHelper
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,6 +42,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val animHelper = AnimHelper.newInstance()
         val api = API.newInstance(requireContext())
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
 
@@ -98,7 +100,7 @@ class HomeFragment : Fragment() {
 
 
         binding.coursesRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.coursesRecyclerView.adapter = CourseRecyclerAdapter(api.getCourses())
+        binding.coursesRecyclerView.adapter = CourseRecyclerAdapter(api.getCourses(), api, animHelper, requireContext())
 
 
         return binding.root

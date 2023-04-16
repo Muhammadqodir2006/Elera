@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="16dp"
-    app:cardElevation="6dp"
+    app:cardElevation="60dp"
     android:layout_margin="8dp"
     android:layout_height="wrap_content">
 
@@ -16,7 +16,7 @@
             android:id="@+id/cardView"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView10"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,24 +32,26 @@
 
         <TextView
             android:id="@+id/home_course_item_category"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="8dp"
             android:text="@string/_3d_design"
             android:textColor="@color/primary"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/home_course_item_bookmark"
             app:layout_constraintStart_toEndOf="@+id/cardView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/home_course_item_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:text="@string/_3d_design_illustration"
-            android:textColor="@color/blackish"
-            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/home_course_item_bookmark"
             app:layout_constraintStart_toEndOf="@+id/cardView"
             app:layout_constraintTop_toBottomOf="@+id/home_course_item_category" />
 
@@ -59,8 +61,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/_48"
+            android:textStyle="bold"
             android:textColor="@color/primary"
-            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/home_course_item_name"
             app:layout_constraintTop_toBottomOf="@+id/home_course_item_name" />
 
@@ -69,10 +71,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-
             android:text="@string/_80"
-            android:textColor="@color/blackish"
-            android:textSize="18sp"
+            android:textColor="@color/text_color2"
             app:layout_constraintStart_toEndOf="@+id/home_course_item_price"
             app:layout_constraintTop_toTopOf="@+id/home_course_item_price" />
 
@@ -90,12 +90,13 @@
             android:id="@+id/home_course_item_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
+            android:textColor="@color/text_color2"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:text="@string/_4_8"
-            android:textColor="@color/blackish"
             android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/home_course_item_price" />
 
@@ -105,24 +106,34 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:text="@string/q"
-            android:textColor="@color/blackish"
+            android:textColor="@color/text_color2"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/home_course_item_rating"
             app:layout_constraintStart_toEndOf="@+id/home_course_item_rating"
             app:layout_constraintTop_toTopOf="@+id/home_course_item_rating" />
 
         <TextView
+            android:textColor="@color/text_color2"
             android:id="@+id/home_course_item_student_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:text="@string/_12_232_students"
-            android:textColor="@color/blackish"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/home_course_item_rating"
             app:layout_constraintStart_toEndOf="@+id/textView10"
             app:layout_constraintTop_toTopOf="@+id/home_course_item_rating" />
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/home_course_item_bookmark"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="16dp"
+            android:clickable="true"
+            android:src="@drawable/bookmark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

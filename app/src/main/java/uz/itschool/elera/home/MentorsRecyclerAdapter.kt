@@ -29,6 +29,10 @@ class MentorsRecyclerAdapter(var mentorsList:ArrayList<Mentor>): RecyclerView.Ad
         val mentor = mentorsList[position]
         holder.image.load(mentor.image)
         holder.namE.text = mentor.firstName
+        holder.itemView.setOnClickListener {
+            // TODO: go to the mentor detail screen
+
+        }
     }
 
 }
