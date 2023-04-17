@@ -57,7 +57,7 @@
             app:layout_constraintTop_toBottomOf="@+id/home_course_item_category" />
 
         <TextView
-            android:id="@+id/home_course_item_price"
+            android:id="@+id/course_detail_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -68,27 +68,27 @@
             app:layout_constraintTop_toBottomOf="@+id/home_course_item_name" />
 
         <TextView
-            android:id="@+id/home_course_item_old_price"
+            android:id="@+id/course_detail_old_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/_80"
             android:textColor="@color/text_color2"
-            app:layout_constraintStart_toEndOf="@+id/home_course_item_price"
-            app:layout_constraintTop_toTopOf="@+id/home_course_item_price" />
+            app:layout_constraintStart_toEndOf="@+id/course_detail_price"
+            app:layout_constraintTop_toTopOf="@+id/course_detail_price" />
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/star"
-            app:layout_constraintBottom_toBottomOf="@+id/home_course_item_rating"
-            app:layout_constraintStart_toStartOf="@+id/home_course_item_price"
-            app:layout_constraintTop_toTopOf="@+id/home_course_item_rating"
+            app:layout_constraintBottom_toBottomOf="@+id/course_detail_rating"
+            app:layout_constraintStart_toStartOf="@+id/course_detail_price"
+            app:layout_constraintTop_toTopOf="@+id/course_detail_rating"
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/home_course_item_rating"
+            android:id="@+id/course_detail_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/text_color2"
@@ -99,7 +99,7 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/home_course_item_price" />
+            app:layout_constraintTop_toBottomOf="@+id/course_detail_price" />
 
         <TextView
             android:id="@+id/textView10"
@@ -109,21 +109,21 @@
             android:text="@string/q"
             android:textColor="@color/text_color2"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/home_course_item_rating"
-            app:layout_constraintStart_toEndOf="@+id/home_course_item_rating"
-            app:layout_constraintTop_toTopOf="@+id/home_course_item_rating" />
+            app:layout_constraintBottom_toBottomOf="@+id/course_detail_rating"
+            app:layout_constraintStart_toEndOf="@+id/course_detail_rating"
+            app:layout_constraintTop_toTopOf="@+id/course_detail_rating" />
 
         <TextView
             android:textColor="@color/text_color2"
-            android:id="@+id/home_course_item_student_number"
+            android:id="@+id/course_detail_review_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:text="@string/_12_232_students"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/home_course_item_rating"
+            app:layout_constraintBottom_toBottomOf="@+id/course_detail_rating"
             app:layout_constraintStart_toEndOf="@+id/textView10"
-            app:layout_constraintTop_toTopOf="@+id/home_course_item_rating" />
+            app:layout_constraintTop_toTopOf="@+id/course_detail_rating" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/home_course_item_bookmark"

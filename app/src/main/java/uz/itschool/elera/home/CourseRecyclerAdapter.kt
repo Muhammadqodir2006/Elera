@@ -17,7 +17,7 @@ import uz.itschool.elera.util.API
 import uz.itschool.elera.util.AnimHelper
 import uz.itschool.elera.util.Course
 
-class CourseRecyclerAdapter(var courses: ArrayList<Course>, private val api: API, private val animHelper: AnimHelper, val context: Context) :
+class CourseRecyclerAdapter(var courses: ArrayList<Course>, private val api: API, private val animHelper: AnimHelper, val context: Context, private val onPressed: OnClick) :
     RecyclerView.Adapter<CourseRecyclerAdapter.MyViewHolder>() {
     private val reviews = api.getReviews()
     private val bookmarks = api.getBookmarks()
@@ -26,10 +26,10 @@ class CourseRecyclerAdapter(var courses: ArrayList<Course>, private val api: API
         val image: ImageView = itemView.findViewById(R.id.home_course_item_image)
         val category: TextView = itemView.findViewById(R.id.home_course_item_category)
         val namE: TextView = itemView.findViewById(R.id.home_course_item_name)
-        val price: TextView = itemView.findViewById(R.id.home_course_item_price)
-        val oldPrice: TextView = itemView.findViewById(R.id.home_course_item_old_price)
-        val rating: TextView = itemView.findViewById(R.id.home_course_item_rating)
-        val studentNum: TextView = itemView.findViewById(R.id.home_course_item_student_number)
+        val price: TextView = itemView.findViewById(R.id.course_detail_price)
+        val oldPrice: TextView = itemView.findViewById(R.id.course_detail_price)
+        val rating: TextView = itemView.findViewById(R.id.course_detail_rating)
+        val studentNum: TextView = itemView.findViewById(R.id.course_detail_review_count)
         val bookmark: ImageView = itemView.findViewById(R.id.home_course_item_bookmark)
 
     }
@@ -93,13 +93,20 @@ class CourseRecyclerAdapter(var courses: ArrayList<Course>, private val api: API
             }
         }
         holder.itemView.setOnClickListener {
-            // TODO:  go to the course detail screen
-            animHelper.animate(context, holder.itemView, R.anim.button_press_anim)
+            animHelper.animate(context, holder.itemView, R.anim.button_press_anim, object : AnimHelper.EndAction{
+                override fun endAction() {
+                    onPressed.onPressed(course)
+                }
+
+            })
         }
     }
 
     override fun getItemCount(): Int {
         return courses.size
+    }
+    interface OnClick{
+        fun onPressed(course: Course)
     }
 
 }

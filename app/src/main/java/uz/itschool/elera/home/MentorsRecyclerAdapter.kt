@@ -54,14 +54,14 @@ class MentorsRecyclerAdapter(
                 R.anim.button_press_anim,
                 object : AnimHelper.EndAction {
                     override fun endAction() {
-//                        onPressed.onPressed()
+                        onPressed.onPressed(mentor)
                     }
 
                 })
         }
     }
     interface OnPressed{
-        fun onPressed()
+        fun onPressed(mentor: Mentor)
     }
 
 }

@@ -30,9 +30,9 @@ class MentorReviewsFragment : Fragment() {
         val binding = FragmentMentorreviewsBinding.inflate(inflater, container, false)
         val api = API.newInstance(requireContext())
 
-        val adadpter = ReviewRecyclerAdapter(api.getReviews(mentor!!))
+        val adapter = ReviewRecyclerAdapter(api.getReviews(mentor!!))
         binding.mentorReviewRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.mentorReviewRecycler.adapter = adadpter
+        binding.mentorReviewRecycler.adapter = adapter
 //        if (adadpter.reviews.size == 0){
 //            val view = ImageView(requireContext())
 //            view.setImageResource(R.drawable.nothing_yet)

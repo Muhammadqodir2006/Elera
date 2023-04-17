@@ -31,10 +31,10 @@ class MentorFragment : Fragment() {
         val animHelper =AnimHelper.newInstance()
         val binding = FragmentMentorBinding.inflate(layoutInflater, container, false)
 
-        val viewPager = binding.mentorViewPager
+        val viewPager = binding.courseViewPager
         viewPager.adapter = MyViewPagerAdapter(parentFragmentManager, lifecycle, arrayListOf(MentorCoursesFragment.newInstance(mentor!!), MentorStudentsFragment.newInstance(mentor!!), MentorReviewsFragment.newInstance(mentor!!)))
 
-        val tabLayout = binding.mentorTabLayout
+        val tabLayout = binding.courseTabLayout
 
         TabLayoutMediator(tabLayout, viewPager){tab, position->
             when (position){
@@ -48,7 +48,6 @@ class MentorFragment : Fragment() {
                     tab.text = "Reviews"
                 }
             }
-
         }.attach()
 
 

@@ -13,9 +13,7 @@ import uz.itschool.elera.databinding.FragmentHomeBinding
 import uz.itschool.elera.home.CategoryRecyclerAdapter
 import uz.itschool.elera.home.CourseRecyclerAdapter
 import uz.itschool.elera.home.MentorsRecyclerAdapter
-import uz.itschool.elera.util.API
-import uz.itschool.elera.util.AnimHelper
-import uz.itschool.elera.util.Category
+import uz.itschool.elera.util.*
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -100,8 +98,10 @@ class HomeFragment : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.mentorsRecyclerView.adapter =
             MentorsRecyclerAdapter(api.getMentors(), animHelper, requireContext(), object :MentorsRecyclerAdapter.OnPressed{
-                override fun onPressed() {
-                    findNavController().navigate(R.id.action_bodyFragment_to_mentorFragment)
+                override fun onPressed(mentor: Mentor) {
+                    val bundle = Bundle()
+                    bundle.putSerializable("param1", mentor)
+                    findNavController().navigate(R.id.action_bodyFragment_to_mentorFragment, bundle)
                 }
 
             })
@@ -110,7 +110,14 @@ class HomeFragment : Fragment() {
         binding.coursesRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         val courseAdapter =
-            CourseRecyclerAdapter(api.getCourses(), api, animHelper, requireContext())
+            CourseRecyclerAdapter(api.getCourses(), api, animHelper, requireContext(), object : CourseRecyclerAdapter.OnClick{
+                override fun onPressed(course: Course) {
+                    val bundle = Bundle()
+                    bundle.putSerializable("param1", course)
+                    findNavController().navigate(R.id.action_bodyFragment_to_mentorFragment, bundle)
+                }
+
+            })
         binding.coursesRecyclerView.adapter = courseAdapter
 
 

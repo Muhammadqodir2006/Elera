@@ -95,6 +95,19 @@ class API private constructor(context: Context) {
         }
         return new
     }
+    fun getReviews(course: Course): ArrayList<Review> {
+        val data: String = shared.getString(reviewsString, "")!!
+        val typeToken = object : TypeToken<ArrayList<Review>>() {}.type
+        if (data == "") return ArrayList()
+        val a: ArrayList<Review> = gson.fromJson(data, typeToken)
+        val new  = arrayListOf<Review>()
+        for (i in a){
+            if (i.course == course){
+                new.add(i)
+            }
+        }
+        return new
+    }
 
     fun getRating(course: Course, reviewS: ArrayList<Review>): Double {
         if (reviewS.isEmpty()) return 0.0

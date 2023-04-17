@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import uz.itschool.elera.R
 import uz.itschool.elera.databinding.FragmentBookmarksBinding
 import uz.itschool.elera.util.API
 import uz.itschool.elera.util.AnimHelper
+import uz.itschool.elera.util.Course
 
 class BookmarksFragment : Fragment() {
 
@@ -34,7 +36,14 @@ class BookmarksFragment : Fragment() {
             binding.bookmarksBackArrow.startAnimation(animation)
         }
         binding.bookmarksReycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.bookmarksReycler.adapter = CourseRecyclerAdapter(api.getBookmarks(), api, animHelper, requireContext())
+        binding.bookmarksReycler.adapter = CourseRecyclerAdapter(api.getBookmarks(), api, animHelper, requireContext(), object : CourseRecyclerAdapter.OnClick{
+            override fun onPressed(course: Course) {
+                val bundle = Bundle()
+                bundle.putSerializable("param1", course)
+                findNavController().navigate(R.id.action_bodyFragment_to_courseDetailFragment, bundle)
+            }
+
+        })
         return binding.root
     }
 
