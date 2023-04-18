@@ -46,10 +46,10 @@
         <action
             android:id="@+id/action_bodyFragment_to_courseDetailFragment"
             app:destination="@id/courseDetailFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left" />
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/notificationsFragment"
@@ -65,7 +65,15 @@
         android:id="@+id/mentorFragment"
         android:name="uz.itschool.elera.home.MentorFragment"
         android:label="fragment_mentor"
-        tools:layout="@layout/fragment_mentor" />
+        tools:layout="@layout/fragment_mentor" >
+        <action
+            android:id="@+id/action_mentorFragment_to_courseDetailFragment"
+            app:destination="@id/courseDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_in_left"/>
+    </fragment>
     <fragment
         android:id="@+id/courseDetailFragment"
         android:name="uz.itschool.elera.home.CourseDetailFragment"

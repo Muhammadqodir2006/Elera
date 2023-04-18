@@ -2,12 +2,12 @@ package uz.itschool.elera.course
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import coil.api.load
-import uz.itschool.elera.R
 import uz.itschool.elera.databinding.FragmentCourseAboutBinding
 import uz.itschool.elera.util.Course
 
@@ -33,7 +33,7 @@ class CourseAboutFragment : Fragment() {
         binding.mentorImage.load(param1!!.mentor.image)
         binding.courseDetailMentorJob.text = param1!!.mentor.job
         binding.courseDetailMentorName.text = param1!!.mentor.firstName + " " + param1!!.mentor.firstName
-
+        Log.d("TAG", "onCreateView: ")
         return binding.root
     }
 

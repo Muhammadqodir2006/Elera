@@ -32,7 +32,7 @@ class MentorFragment : Fragment() {
         val binding = FragmentMentorBinding.inflate(layoutInflater, container, false)
 
         val viewPager = binding.courseViewPager
-        viewPager.adapter = MyViewPagerAdapter(parentFragmentManager, lifecycle, arrayListOf(MentorCoursesFragment.newInstance(mentor!!), MentorStudentsFragment.newInstance(mentor!!), MentorReviewsFragment.newInstance(mentor!!)))
+        viewPager.adapter = MyViewPagerAdapter(childFragmentManager, lifecycle, arrayListOf(MentorCoursesFragment.newInstance(mentor!!), MentorStudentsFragment.newInstance(mentor!!), MentorReviewsFragment.newInstance(mentor!!)))
 
         val tabLayout = binding.courseTabLayout
 

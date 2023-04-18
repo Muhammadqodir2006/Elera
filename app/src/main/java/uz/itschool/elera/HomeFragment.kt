@@ -114,7 +114,7 @@ class HomeFragment : Fragment() {
                 override fun onPressed(course: Course) {
                     val bundle = Bundle()
                     bundle.putSerializable("param1", course)
-                    findNavController().navigate(R.id.action_bodyFragment_to_mentorFragment, bundle)
+                    findNavController().navigate(R.id.action_bodyFragment_to_courseDetailFragment, bundle)
                 }
 
             })

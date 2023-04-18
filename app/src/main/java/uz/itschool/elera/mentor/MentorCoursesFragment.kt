@@ -1,16 +1,15 @@
 package uz.itschool.elera.mentor
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import uz.itschool.elera.R
 import uz.itschool.elera.databinding.FragmentMentorCoursesBinding
 import uz.itschool.elera.home.CourseRecyclerAdapter
-import uz.itschool.elera.home.MentorsRecyclerAdapter
 import uz.itschool.elera.util.API
 import uz.itschool.elera.util.AnimHelper
 import uz.itschool.elera.util.Course
@@ -31,7 +30,7 @@ class MentorCoursesFragment() : Fragment() {
             override fun onPressed(course: Course) {
                 val bundle = Bundle()
                 bundle.putSerializable("param1", course)
-                findNavController().navigate(R.id.action_bodyFragment_to_courseDetailFragment, bundle)
+                findNavController().navigate(R.id.action_mentorFragment_to_courseDetailFragment, bundle)
             }
 
         })

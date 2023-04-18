@@ -27,7 +27,7 @@ class CourseRecyclerAdapter(var courses: ArrayList<Course>, private val api: API
         val category: TextView = itemView.findViewById(R.id.home_course_item_category)
         val namE: TextView = itemView.findViewById(R.id.home_course_item_name)
         val price: TextView = itemView.findViewById(R.id.course_detail_price)
-        val oldPrice: TextView = itemView.findViewById(R.id.course_detail_price)
+        val oldPrice: TextView = itemView.findViewById(R.id.course_detail_old_price)
         val rating: TextView = itemView.findViewById(R.id.course_detail_rating)
         val studentNum: TextView = itemView.findViewById(R.id.course_detail_review_count)
         val bookmark: ImageView = itemView.findViewById(R.id.home_course_item_bookmark)
@@ -62,11 +62,14 @@ class CourseRecyclerAdapter(var courses: ArrayList<Course>, private val api: API
         holder.oldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
         if (course.prices.size > 1) {
             holder.oldPrice.text = course.prices[course.prices.lastIndex - 1].toString() + " $"
+            holder.oldPrice.paintFlags  = Paint.STRIKE_THRU_TEXT_FLAG
         } else {
             holder.oldPrice.visibility = View.INVISIBLE
         }
         if (bookmarks.contains(course)) {
             holder.bookmark.setImageResource(R.drawable.bookmark_selected)
+        }else{
+            holder.bookmark.setImageResource(R.drawable.bookmark)
         }
         holder.bookmark.setOnClickListener {
             var res = R.drawable.bookmark

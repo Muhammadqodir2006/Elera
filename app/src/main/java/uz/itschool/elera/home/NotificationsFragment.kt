@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import uz.itschool.elera.R
 import uz.itschool.elera.databinding.FragmentNotificationsBinding
+import uz.itschool.elera.util.AnimHelper
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,17 +37,23 @@ class NotificationsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        val animHelper = AnimHelper.newInstance()
 
         binding.notificationsBackArrow.setOnClickListener {
-            val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.button_press_anim)
-            animation.setAnimationListener(object : Animation.AnimationListener {
-                override fun onAnimationStart(p0: Animation?) {}
-                override fun onAnimationRepeat(p0: Animation?) {}
-                override fun onAnimationEnd(p0: Animation?) {
+            animHelper.animate(requireContext(), binding.notificationsBackArrow, R.anim.button_press_anim, object : AnimHelper.EndAction{
+                override fun endAction() {
                     requireActivity().onBackPressedDispatcher.onBackPressed()
                 }
+
             })
-            binding.notificationsBackArrow.startAnimation(animation)
+        }
+
+
+
+
+
+        binding.bookmarksMore.setOnClickListener {
+            animHelper.animate(requireContext(), binding.bookmarksMore, R.anim.button_press_anim)
         }
         return binding.root
     }

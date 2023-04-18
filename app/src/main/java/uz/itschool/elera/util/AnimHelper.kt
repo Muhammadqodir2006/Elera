@@ -32,6 +32,7 @@ class AnimHelper private constructor() {
         view.startAnimation(animation)
     }
 
+
     interface EndAction {
         fun endAction()
     }
