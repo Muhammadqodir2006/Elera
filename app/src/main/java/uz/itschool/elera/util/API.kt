@@ -15,6 +15,7 @@ class API private constructor(context: Context) {
     private val coursesString = "courses"
     private val reviewsString = "reviews"
     private val bookmarkString = "bookmarks"
+    private val loggedInUser = "loggedInUser"
 
 
     companion object {
@@ -25,6 +26,16 @@ class API private constructor(context: Context) {
             }
             return instance!!
         }
+    }
+
+    fun getLoggedInUser():User?{
+        val data: String = shared.getString(loggedInUser, "")!!
+        val typeToken = object : TypeToken<User>() {}.type
+        if (data == "") return null
+        return gson.fromJson(data, typeToken)
+    }
+    fun setLoggedInUser(user: User){
+        edit.putString(loggedInUser, gson.toJson(user))
     }
 
     fun getMentors(): ArrayList<Mentor> {

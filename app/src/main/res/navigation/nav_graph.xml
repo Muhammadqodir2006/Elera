@@ -16,6 +16,9 @@
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:popUpTo="@id/nav_graph" />
+        <action
+            android:id="@+id/action_splashFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/bodyFragment"
@@ -79,4 +82,34 @@
         android:name="uz.itschool.elera.home.CourseDetailFragment"
         android:label="fragment_course_d_etail"
         tools:layout="@layout/fragment_course_d_etail" />
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="uz.itschool.elera.startup.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="uz.itschool.elera.startup.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_bodyFragment"
+            app:destination="@id/bodyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="uz.itschool.elera.startup.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_bodyFragment"
+            app:destination="@id/bodyFragment" />
+    </fragment>
 </navigation>

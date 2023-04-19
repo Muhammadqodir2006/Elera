@@ -16,6 +16,7 @@ class SplashFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val api = API.newInstance(requireContext())
 
         val binding = FragmentSplashBinding.inflate(inflater, container, false)
         var animation =
@@ -38,8 +39,15 @@ class SplashFragment : Fragment() {
     private fun check() {
         val api = API.newInstance(requireContext())
         api.hasData()
+        val user = api.getLoggedInUser()
+        if (user == null){
+            findNavController().navigate(R.id.action_splashFragment_to_welcomeFragment)
+        }else{
+            val bundle = Bundle()
+            bundle.putSerializable("param1", user)
+            findNavController().navigate(R.id.action_splashFragment_to_bodyFragment)
+        }
 
-        findNavController().navigate(R.id.action_splashFragment_to_bodyFragment)
     }
 
 }
