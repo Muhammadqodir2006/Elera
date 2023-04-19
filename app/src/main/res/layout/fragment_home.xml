@@ -8,7 +8,7 @@
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/user_image_iv"
+        android:id="@+id/home_user_image_iv"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
@@ -25,19 +25,19 @@
         android:text="@string/good_morning"
         android:textSize="16sp"
         android:textColor="@color/text_color2"
-        app:layout_constraintBottom_toTopOf="@+id/user_name"
-        app:layout_constraintStart_toEndOf="@+id/user_image_iv"
-        app:layout_constraintTop_toTopOf="@+id/user_image_iv" />
+        app:layout_constraintBottom_toTopOf="@+id/home_user_name"
+        app:layout_constraintStart_toEndOf="@+id/home_user_image_iv"
+        app:layout_constraintTop_toTopOf="@+id/home_user_image_iv" />
 
     <TextView
-        android:id="@+id/user_name"
+        android:id="@+id/home_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/andrew_ainsley"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/user_image_iv"
+        app:layout_constraintBottom_toBottomOf="@+id/home_user_image_iv"
         app:layout_constraintStart_toStartOf="@+id/textView" />
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -47,9 +47,9 @@
         android:layout_marginEnd="16dp"
         android:scaleType="fitXY"
         android:src="@drawable/bookmark_1"
-        app:layout_constraintBottom_toBottomOf="@+id/user_image_iv"
+        app:layout_constraintBottom_toBottomOf="@+id/home_user_image_iv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/user_image_iv" />
+        app:layout_constraintTop_toTopOf="@+id/home_user_image_iv" />
 
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -58,9 +58,9 @@
         android:layout_height="36dp"
         android:layout_marginEnd="12dp"
         android:src="@drawable/notification_ic"
-        app:layout_constraintBottom_toBottomOf="@+id/user_image_iv"
+        app:layout_constraintBottom_toBottomOf="@+id/home_user_image_iv"
         app:layout_constraintEnd_toStartOf="@+id/book_mark_iv"
-        app:layout_constraintTop_toTopOf="@+id/user_image_iv" />
+        app:layout_constraintTop_toTopOf="@+id/home_user_image_iv" />
 
 
     <ScrollView
@@ -68,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_image_iv">
+        app:layout_constraintTop_toBottomOf="@+id/home_user_image_iv">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

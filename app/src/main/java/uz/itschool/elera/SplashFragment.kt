@@ -47,7 +47,6 @@ class SplashFragment : Fragment() {
             bundle.putSerializable("param1", user)
             findNavController().navigate(R.id.action_splashFragment_to_bodyFragment)
         }
-
     }
 
 }

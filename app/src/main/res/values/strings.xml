@@ -41,4 +41,6 @@
     <string name="hours">Hours</string>
     <string name="certificate">Certificate</string>
     <string name="next">Next</string>
+    <string name="log_in_to_your_account">Log in to your account</string>
+    <string name="email">Email</string>
 </resources>

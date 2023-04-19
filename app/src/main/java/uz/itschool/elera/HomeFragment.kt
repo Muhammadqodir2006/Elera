@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.api.load
 import uz.itschool.elera.databinding.FragmentHomeBinding
 import uz.itschool.elera.home.CategoryRecyclerAdapter
 import uz.itschool.elera.home.CourseRecyclerAdapter
@@ -30,6 +31,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -135,6 +137,9 @@ class HomeFragment : Fragment() {
                     courseAdapter.notifyDataSetChanged()
                 }
             })
+
+        binding.homeUserImageIv.load(param1!!.image)
+        binding.homeUserName.text = param1!!.firstName + " " + param1!!.lastName
 
         return binding.root
     }
