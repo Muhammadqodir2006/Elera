@@ -42,5 +42,10 @@
     <string name="certificate">Certificate</string>
     <string name="next">Next</string>
     <string name="log_in_to_your_account">Log in to your account</string>
-    <string name="email">Email</string>
+    <string name="email">Username or email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="do_not_have_an_account">Do not have an account ?</string>
 </resources>

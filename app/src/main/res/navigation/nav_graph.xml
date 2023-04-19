@@ -9,7 +9,7 @@
         android:id="@+id/splashFragment"
         android:name="uz.itschool.elera.SplashFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_bodyFragment"
             app:destination="@id/bodyFragment"
@@ -18,13 +18,18 @@
             app:popUpTo="@id/nav_graph" />
         <action
             android:id="@+id/action_splashFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment" />
+            app:destination="@id/welcomeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_in_left"
+            app:popUpTo="@id/nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/bodyFragment"
         android:name="uz.itschool.elera.BodyFragment"
         android:label="fragment_body"
-        tools:layout="@layout/fragment_body" >
+        tools:layout="@layout/fragment_body">
         <action
             android:id="@+id/action_bodyFragment_to_notificationsFragment"
             app:destination="@id/notificationsFragment"
@@ -38,7 +43,7 @@
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left"/>
+            app:popExitAnim="@anim/slide_out_left" />
         <action
             android:id="@+id/action_bodyFragment_to_mentorFragment"
             app:destination="@id/mentorFragment"
@@ -68,14 +73,14 @@
         android:id="@+id/mentorFragment"
         android:name="uz.itschool.elera.home.MentorFragment"
         android:label="fragment_mentor"
-        tools:layout="@layout/fragment_mentor" >
+        tools:layout="@layout/fragment_mentor">
         <action
             android:id="@+id/action_mentorFragment_to_courseDetailFragment"
             app:destination="@id/courseDetailFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@android:anim/slide_out_right"
-            app:popExitAnim="@android:anim/slide_in_left"/>
+            app:popExitAnim="@android:anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/courseDetailFragment"
@@ -86,30 +91,46 @@
         android:id="@+id/welcomeFragment"
         android:name="uz.itschool.elera.startup.WelcomeFragment"
         android:label="fragment_welcome"
-        tools:layout="@layout/fragment_welcome" >
+        tools:layout="@layout/fragment_welcome">
         <action
             android:id="@+id/action_welcomeFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            app:destination="@id/signInFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
         android:name="uz.itschool.elera.startup.SignInFragment"
         android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" >
+        tools:layout="@layout/fragment_sign_in">
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_in_left"/>
         <action
             android:id="@+id/action_signInFragment_to_bodyFragment"
-            app:destination="@id/bodyFragment" />
+            app:destination="@id/bodyFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_in_left"/>
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="uz.itschool.elera.startup.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" >
+        tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signUpFragment_to_bodyFragment"
-            app:destination="@id/bodyFragment" />
+            app:destination="@id/bodyFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_in_left" />
     </fragment>
 </navigation>

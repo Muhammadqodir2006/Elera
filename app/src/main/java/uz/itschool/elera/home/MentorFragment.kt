@@ -69,7 +69,12 @@ class MentorFragment : Fragment() {
             })
         }
         binding.mentorMore.setOnClickListener {
-            animHelper.animate(requireContext(), binding.mentorMore, R.anim.button_press_anim)
+            animHelper.animate(requireContext(), binding.mentorMore, R.anim.button_press_anim, object : AnimHelper.EndAction{
+                override fun endAction() {
+
+                }
+
+            })
         }
 
         return binding.root

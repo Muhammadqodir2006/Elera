@@ -53,20 +53,17 @@ class NotificationsFragment : Fragment() {
 
 
         binding.bookmarksMore.setOnClickListener {
-            animHelper.animate(requireContext(), binding.bookmarksMore, R.anim.button_press_anim)
+            animHelper.animate(requireContext(), binding.bookmarksMore, R.anim.button_press_anim, object : AnimHelper.EndAction{
+                override fun endAction() {
+
+                }
+
+            })
         }
         return binding.root
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment NotificationsFragment.
-         */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =

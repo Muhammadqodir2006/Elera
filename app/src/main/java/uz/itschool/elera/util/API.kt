@@ -28,6 +28,16 @@ class API private constructor(context: Context) {
         }
     }
 
+    fun getUser(emailUsername:String): User? {
+        val users = getUsers()
+        for (i in users){
+            if (i.email == emailUsername || i.username == emailUsername){
+                return i
+            }
+        }
+        return null
+    }
+
     fun getLoggedInUser():User?{
         val data: String = shared.getString(loggedInUser, "")!!
         val typeToken = object : TypeToken<User>() {}.type

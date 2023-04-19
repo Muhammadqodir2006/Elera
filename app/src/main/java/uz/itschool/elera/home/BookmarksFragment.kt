@@ -46,7 +46,12 @@ class BookmarksFragment : Fragment() {
         })
 
         binding.bookmarksMore.setOnClickListener {
-            animHelper.animate(requireContext(), binding.bookmarksMore, R.anim.button_press_anim)
+            animHelper.animate(requireContext(), binding.bookmarksMore, R.anim.button_press_anim, object : AnimHelper.EndAction{
+                override fun endAction() {
+
+                }
+
+            })
         }
         return binding.root
     }
