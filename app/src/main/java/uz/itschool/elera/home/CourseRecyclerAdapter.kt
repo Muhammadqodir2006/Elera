@@ -10,17 +10,18 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
+import coil.load
 import uz.itschool.elera.R
 import uz.itschool.elera.databinding.HomeCourseItemBinding
 import uz.itschool.elera.util.API
 import uz.itschool.elera.util.AnimHelper
 import uz.itschool.elera.util.Course
+import uz.itschool.elera.util.User
 
-class CourseRecyclerAdapter(var courses: ArrayList<Course>, private val api: API, private val animHelper: AnimHelper, val context: Context, private val onPressed: OnClick) :
+class CourseRecyclerAdapter(var courses: ArrayList<Course>, private val api: API, private val animHelper: AnimHelper, val context: Context, private val onPressed: OnClick, val curUser: User) :
     RecyclerView.Adapter<CourseRecyclerAdapter.MyViewHolder>() {
     private val reviews = api.getReviews()
-    private val bookmarks = api.getBookmarks()
+    private val bookmarks = api.getBookmarks(curUser)
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById(R.id.home_course_item_image)
@@ -73,7 +74,7 @@ class CourseRecyclerAdapter(var courses: ArrayList<Course>, private val api: API
         }
         holder.bookmark.setOnClickListener {
             var res = R.drawable.bookmark
-            if (api.updateBookmarks(course)){
+            if (api.updateBookmarks(course, curUser)){
                 res = R.drawable.bookmark_selected
                 animHelper.animate(context, holder.bookmark, R.anim.bookmarked_anim_part1, object : AnimHelper.EndAction{
                     override fun endAction() {

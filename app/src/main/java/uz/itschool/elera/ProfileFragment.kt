@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import uz.itschool.elera.databinding.FragmentProfileBinding
 import uz.itschool.elera.util.User
 
 private const val ARG_PARAM1 = "param1"
@@ -21,9 +22,10 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+    ): View {
+        val binding = FragmentProfileBinding.inflate(inflater, container, false)
+
+        return binding.root
     }
 
     companion object {

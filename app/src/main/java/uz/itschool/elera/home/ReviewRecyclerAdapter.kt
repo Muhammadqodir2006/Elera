@@ -7,17 +7,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
+import coil.load
 import uz.itschool.elera.R
 import uz.itschool.elera.databinding.ReviewItemBinding
 import uz.itschool.elera.util.Review
 
-class ReviewRecyclerAdapter(val reviews:ArrayList<Review>): RecyclerView.Adapter<ReviewRecyclerAdapter.MyViewHolder>() {
+class ReviewRecyclerAdapter(private val reviews:ArrayList<Review>): RecyclerView.Adapter<ReviewRecyclerAdapter.MyViewHolder>() {
     inner class MyViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
-        val image = itemView.findViewById<ImageView>(R.id.review_image)
-        val namE = itemView.findViewById<TextView>(R.id.review_name)
-        val score = itemView.findViewById<TextView>(R.id.review_score)
-        val texT = itemView.findViewById<TextView>(R.id.review_text)
+        val image: ImageView = itemView.findViewById(R.id.review_image)
+        val namE: TextView = itemView.findViewById(R.id.review_name)
+        val score: TextView = itemView.findViewById(R.id.review_score)
+        val texT: TextView = itemView.findViewById(R.id.review_text)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

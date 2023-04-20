@@ -1,14 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="64dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/user"
+            app:layout_constraintTop_toTopOf="parent"/>
+<!--            android:adjustViewBounds="true"-->
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/text_color2"
+                android:textSize="20sp"
+                android:text="@string/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/profile_username"
+                android:layout_marginStart="16dp"
+                android:textSize="20sp"
+                android:text="@string/andrew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-</FrameLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/text_color2"
+                android:textSize="20sp"
+                android:text="@string/email_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/profile_name"
+                android:layout_marginStart="16dp"
+                android:textSize="20sp"
+                android:text="@string/andrew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/profile_log_out_button"
+            android:layout_marginTop="32dp"
+            android:layout_marginHorizontal="32dp"
+            android:backgroundTint="#F44336"
+            app:cornerRadius="32dp"
+            android:text="@string/log_out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</ScrollView>

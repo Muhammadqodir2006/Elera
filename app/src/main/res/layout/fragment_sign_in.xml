@@ -35,19 +35,21 @@
         <androidx.appcompat.widget.AppCompatEditText
             style="@style/Widget.Material3.TextInputEditText.FilledBox"
             android:layout_width="match_parent"
+            android:inputType="textEmailAddress"
             android:layout_marginTop="42dp"
             android:maxLines="1"
             android:id="@+id/sign_in_email_edit_text"
             android:layout_marginHorizontal="16dp"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_shape"
-            android:hint="@string/email" />
+            android:hint="@string/email_" />
 
         <androidx.appcompat.widget.AppCompatEditText
             style="@style/Widget.Material3.TextInputEditText.FilledBox"
             android:layout_width="match_parent"
             android:layout_marginTop="24dp"
             android:maxLines="1"
+            android:inputType="textPassword"
             android:id="@+id/sign_in_password_edit_text"
             android:layout_marginHorizontal="16dp"
             android:layout_height="wrap_content"

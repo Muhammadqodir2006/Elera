@@ -37,11 +37,12 @@ class SignInFragment : Fragment() {
             }
             if (user.password != password) {
                 Toast.makeText(requireContext(), "Password incorrect", Toast.LENGTH_SHORT).show()
+                binding.signInPasswordEditText.text?.clear()
                 return@setOnClickListener
             }
             val bundle = Bundle()
             bundle.putSerializable("param1", user)
-            findNavController().navigate(R.id.action_signInFragment_to_bodyFragment)
+            findNavController().navigate(R.id.action_signInFragment_to_bodyFragment, bundle)
         }
 
 
