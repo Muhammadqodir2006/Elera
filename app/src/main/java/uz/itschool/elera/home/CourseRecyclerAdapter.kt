@@ -18,10 +18,10 @@ import uz.itschool.elera.util.AnimHelper
 import uz.itschool.elera.util.Course
 import uz.itschool.elera.util.User
 
-class CourseRecyclerAdapter(var courses: ArrayList<Course>, private val api: API, private val animHelper: AnimHelper, val context: Context, private val onPressed: OnClick, val curUser: User) :
+class CourseRecyclerAdapter(var courses: ArrayList<Course>, private val api: API, private val animHelper: AnimHelper, val context: Context, private val onPressed: OnClick) :
     RecyclerView.Adapter<CourseRecyclerAdapter.MyViewHolder>() {
     private val reviews = api.getReviews()
-    private val bookmarks = api.getBookmarks(curUser)
+    private val bookmarks = api.getBookmarks()
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById(R.id.home_course_item_image)
@@ -74,7 +74,7 @@ class CourseRecyclerAdapter(var courses: ArrayList<Course>, private val api: API
         }
         holder.bookmark.setOnClickListener {
             var res = R.drawable.bookmark
-            if (api.updateBookmarks(course, curUser)){
+            if (api.updateBookmarks(course)){
                 res = R.drawable.bookmark_selected
                 animHelper.animate(context, holder.bookmark, R.anim.bookmarked_anim_part1, object : AnimHelper.EndAction{
                     override fun endAction() {

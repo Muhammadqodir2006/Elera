@@ -11,6 +11,7 @@
         android:orientation="vertical"
         android:layout_height="wrap_content">
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_photo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="64dp"

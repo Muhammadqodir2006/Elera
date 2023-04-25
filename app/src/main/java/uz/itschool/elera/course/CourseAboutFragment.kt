@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import coil.api.load
+import coil.load
 import uz.itschool.elera.databinding.FragmentCourseAboutBinding
 import uz.itschool.elera.util.Course
 

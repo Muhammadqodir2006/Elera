@@ -36,14 +36,14 @@ class BookmarksFragment : Fragment() {
             binding.bookmarksBackArrow.startAnimation(animation)
         }
         binding.bookmarksReycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.bookmarksReycler.adapter = CourseRecyclerAdapter(api.getBookmarks(api.getLoggedInUser()!!), api, animHelper, requireContext(), object : CourseRecyclerAdapter.OnClick{
+        binding.bookmarksReycler.adapter = CourseRecyclerAdapter(api.getBookmarks(), api, animHelper, requireContext(), object : CourseRecyclerAdapter.OnClick{
             override fun onPressed(course: Course) {
                 val bundle = Bundle()
                 bundle.putSerializable("param1", course)
                 findNavController().navigate(R.id.action_bodyFragment_to_courseDetailFragment, bundle)
             }
 
-        }, api.getLoggedInUser()!!)
+        })
 
         binding.bookmarksMore.setOnClickListener {
             animHelper.animate(requireContext(), binding.bookmarksMore, R.anim.button_press_anim, object : AnimHelper.EndAction{

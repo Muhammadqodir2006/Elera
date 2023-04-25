@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import coil.api.load
+import coil.load
 import com.google.android.material.tabs.TabLayoutMediator
 import uz.itschool.elera.R
 import uz.itschool.elera.course.CourseAboutFragment

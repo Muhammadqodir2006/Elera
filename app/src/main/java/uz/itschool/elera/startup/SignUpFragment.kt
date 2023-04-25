@@ -46,8 +46,9 @@ class SignUpFragment : Fragment() {
         binding.signUpButton.setOnClickListener {
             val email = binding.signUpEmailEditText.text.toString().trim()
             val password = binding.signUpPasswordEditText.text.toString().trim()
-            val user = User("Template", email, password, "Template", "Template", true, "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.somersetlive.co.uk%2Fnews%2Fsomerset-news%2Fdriver-crushed-man-van-extreme-8348629&psig=AOvVaw0-zIvr3lj9Pi2cDZXmL7c3&ust=1682044791844000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMiV0KS3t_4CFQAAAAAdAAAAABAg", arrayListOf())
+            val user = User("Template", email, password, "Template", "Template", true, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTO9_01SZ7hFnlt1TGOQG_pQ1xe0PY2R9E9A&usqp=CAU", arrayListOf())
             if (api.registerUser(user)){
+                Toast.makeText(requireContext(), "Successfully registered", Toast.LENGTH_LONG).show()
                 val bundle = Bundle()
                 bundle.putSerializable("param1", user)
                 findNavController().navigate(R.id.action_signUpFragment_to_bodyFragment, bundle)

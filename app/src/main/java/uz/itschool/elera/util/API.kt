@@ -46,10 +46,10 @@ class API private constructor(context: Context) {
     }
 
     fun setLoggedInUser(user: User) {
-        edit.putString(loggedInUser, gson.toJson(user))
+        edit.putString(loggedInUser, gson.toJson(user)).commit()
     }
     fun logOut() {
-        edit.putString(loggedInUser, gson.toJson(""))
+        edit.putString(loggedInUser, gson.toJson("")).commit()
     }
 
     fun registerUser(user: User): Boolean {
@@ -60,7 +60,8 @@ class API private constructor(context: Context) {
             }
         }
         users.add(user)
-        edit.putString(usersString, gson.toJson(users))
+        edit.putString(usersString, gson.toJson(users)).commit()
+        setLoggedInUser(user)
         return true
     }
 
@@ -71,7 +72,7 @@ class API private constructor(context: Context) {
         return gson.fromJson(data, typeToken)
     }
 
-    fun getUsers(): ArrayList<User> {
+    private fun getUsers(): ArrayList<User> {
         val data: String = shared.getString(usersString, "")!!
         val typeToken = object : TypeToken<ArrayList<User>>() {}.type
         if (data == "") return ArrayList()
@@ -177,31 +178,27 @@ class API private constructor(context: Context) {
         return 22345
     }
 
-    fun getBookmarks(user: User): ArrayList<Course> {
-        val users = getUsers()
-        var useR: User? = null
-        for (i in users){
-            if (i == user) {
-                useR = i
-                break
-            }
-        }
-        return useR!!.bookMarks
+    fun getBookmarks(): ArrayList<Course> {
+        val user = getLoggedInUser()!!
+        if (user.bookMarks.isEmpty()) return arrayListOf()
+        return user.bookMarks
     }
 
-    fun updateBookmarks(course: Course, user: User): Boolean {
-        val bookmarks = getBookmarks(user)
+    fun updateBookmarks(course: Course): Boolean {
+        val user = getLoggedInUser()!!
+        val bookmarks = getBookmarks()
         return if (bookmarks.contains(course)) {
             bookmarks.remove(course)
-            userBookMarkUpdate(user, bookmarks)
+            userBookMarkUpdate(bookmarks)
             true
         } else {
             bookmarks.add(course)
-            userBookMarkUpdate(user, bookmarks)
+            userBookMarkUpdate(bookmarks)
             false
         }
     }
-    private fun userBookMarkUpdate(user: User, bookMarks:ArrayList<Course>){
+    private fun userBookMarkUpdate(bookMarks:ArrayList<Course>){
+        val user = getLoggedInUser()
         val users = getUsers()
         for (i in users){
             if (i == user){
@@ -209,7 +206,7 @@ class API private constructor(context: Context) {
                 break
             }
         }
-        edit.putString(usersString, gson.toJson(users))
+        edit.putString(usersString, gson.toJson(users)).commit()
     }
 
 

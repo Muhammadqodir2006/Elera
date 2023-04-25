@@ -38,7 +38,7 @@ class AllCoursesFragment : Fragment() {
                 findNavController().navigate(R.id.action_allCoursesFragment_to_courseDetailFragment, bundle)
             }
 
-        }, api.getLoggedInUser()!!)
+        })
         return binding.root
     }
 

@@ -9,7 +9,7 @@ import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import coil.api.load
+import coil.load
 import uz.itschool.elera.databinding.FragmentHomeBinding
 import uz.itschool.elera.home.CategoryRecyclerAdapter
 import uz.itschool.elera.home.CourseRecyclerAdapter
