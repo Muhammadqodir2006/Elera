@@ -53,4 +53,6 @@
     <string name="username">Username:</string>
     <string name="andrew">Andrew</string>
     <string name="log_out">Log out</string>
+    <string name="all_courses">All courses</string>
+    <string name="all_mentors">All mentors</string>
 </resources>

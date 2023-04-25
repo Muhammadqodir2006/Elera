@@ -48,6 +48,9 @@ class API private constructor(context: Context) {
     fun setLoggedInUser(user: User) {
         edit.putString(loggedInUser, gson.toJson(user))
     }
+    fun logOut() {
+        edit.putString(loggedInUser, gson.toJson(""))
+    }
 
     fun registerUser(user: User): Boolean {
         val users = getUsers()

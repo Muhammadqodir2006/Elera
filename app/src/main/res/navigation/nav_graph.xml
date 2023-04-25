@@ -60,13 +60,24 @@
             app:popExitAnim="@android:anim/slide_in_left" />
         <action
             android:id="@+id/action_bodyFragment_to_allCoursesFragment"
-            app:destination="@id/allCoursesFragment" />
+            app:destination="@id/allCoursesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_in_left" />
         <action
             android:id="@+id/action_bodyFragment_to_allMentorsFragment"
-            app:destination="@id/allMentorsFragment" />
+            app:destination="@id/allMentorsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_in_left" />
         <action
             android:id="@+id/action_bodyFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_bodyFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/notificationsFragment"
@@ -149,7 +160,11 @@
         tools:layout="@layout/fragment_all_courses" >
         <action
             android:id="@+id/action_allCoursesFragment_to_courseDetailFragment"
-            app:destination="@id/courseDetailFragment" />
+            app:destination="@id/courseDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/allMentorsFragment"
@@ -158,7 +173,11 @@
         tools:layout="@layout/fragment_all_mentors" >
         <action
             android:id="@+id/action_allMentorsFragment_to_mentorFragment"
-            app:destination="@id/mentorFragment" />
+            app:destination="@id/mentorFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_in_left"/>
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -167,9 +186,17 @@
         tools:layout="@layout/fragment_search" >
         <action
             android:id="@+id/action_searchFragment_to_courseDetailFragment"
-            app:destination="@id/courseDetailFragment" />
+            app:destination="@id/courseDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_in_left" />
         <action
             android:id="@+id/action_searchFragment_to_mentorFragment"
-            app:destination="@id/mentorFragment" />
+            app:destination="@id/mentorFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_in_left" />
     </fragment>
 </navigation>

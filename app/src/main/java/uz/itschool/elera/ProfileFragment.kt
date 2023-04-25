@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import uz.itschool.elera.databinding.FragmentProfileBinding
+import uz.itschool.elera.util.API
 import uz.itschool.elera.util.User
 
 private const val ARG_PARAM1 = "param1"
@@ -23,7 +25,13 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val api = API.newInstance(requireContext())
         val binding = FragmentProfileBinding.inflate(inflater, container, false)
+        binding.profileLogOutButton.setOnClickListener {
+            // TODO: Warning dialog
+            api.logOut()
+            findNavController().navigate(R.id.action_bodyFragment_to_welcomeFragment)
+        }
         return binding.root
     }
 
