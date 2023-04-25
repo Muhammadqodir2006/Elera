@@ -179,8 +179,14 @@ class API private constructor(context: Context) {
 
     fun getBookmarks(): ArrayList<Course> {
         val user = getLoggedInUser()!!
-        if (user.bookMarks.isEmpty()) return arrayListOf()
-        return user.bookMarks
+        val users = getUsers()
+        for (i in users){
+            if (i.email == user.email){
+                if (i.bookMarks.isEmpty()) return arrayListOf()
+                return i.bookMarks
+            }
+        }
+        return arrayListOf()
     }
 
     fun updateBookmarks(course: Course): Boolean {
@@ -188,23 +194,23 @@ class API private constructor(context: Context) {
         return if (bookmarks.contains(course)) {
             bookmarks.remove(course)
             userBookMarkUpdate(bookmarks)
-            true
+            false
         } else {
             bookmarks.add(course)
             userBookMarkUpdate(bookmarks)
-            false
+            true
         }
     }
     private fun userBookMarkUpdate(bookMarks:ArrayList<Course>){
-        val user = getLoggedInUser()
+        val user = getLoggedInUser()!!
         val users = getUsers()
         for (i in users){
-            if (i == user){
+            if (i.email == user.email){
                 i.bookMarks = bookMarks
-                break
+                edit.putString(usersString, gson.toJson(users)).apply()
+                return
             }
         }
-        edit.putString(usersString, gson.toJson(users)).apply()
     }
 
 

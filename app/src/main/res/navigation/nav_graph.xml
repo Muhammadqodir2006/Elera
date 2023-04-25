@@ -76,7 +76,9 @@
             app:popExitAnim="@android:anim/slide_in_left" />
         <action
             android:id="@+id/action_bodyFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/go_up_appear"
+            app:popExitAnim="@anim/go_down_disappear" />
         <action
             android:id="@+id/action_bodyFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment"

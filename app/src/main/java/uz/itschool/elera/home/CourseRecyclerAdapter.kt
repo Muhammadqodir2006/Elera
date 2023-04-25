@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import uz.itschool.elera.R
@@ -16,9 +18,14 @@ import uz.itschool.elera.databinding.HomeCourseItemBinding
 import uz.itschool.elera.util.API
 import uz.itschool.elera.util.AnimHelper
 import uz.itschool.elera.util.Course
-import uz.itschool.elera.util.User
 
-class CourseRecyclerAdapter(var courses: ArrayList<Course>, private val api: API, private val animHelper: AnimHelper, val context: Context, private val onPressed: OnClick) :
+class CourseRecyclerAdapter(
+    var courses: ArrayList<Course>,
+    private val api: API,
+    private val animHelper: AnimHelper,
+    val context: Context,
+    private val onPressed: OnClick
+) :
     RecyclerView.Adapter<CourseRecyclerAdapter.MyViewHolder>() {
     private val reviews = api.getReviews()
     private val bookmarks = api.getBookmarks()
@@ -51,7 +58,7 @@ class CourseRecyclerAdapter(var courses: ArrayList<Course>, private val api: API
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val course = courses[position]
-        holder.image.load(course.image){
+        holder.image.load(course.image) {
             placeholder(R.drawable.img)
             error(R.drawable.no_internet)
         }
@@ -63,53 +70,79 @@ class CourseRecyclerAdapter(var courses: ArrayList<Course>, private val api: API
         holder.oldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
         if (course.prices.size > 1) {
             holder.oldPrice.text = course.prices[course.prices.lastIndex - 1].toString() + " $"
-            holder.oldPrice.paintFlags  = Paint.STRIKE_THRU_TEXT_FLAG
+            holder.oldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
         } else {
             holder.oldPrice.visibility = View.INVISIBLE
         }
+
         if (bookmarks.contains(course)) {
             holder.bookmark.setImageResource(R.drawable.bookmark_selected)
-        }else{
+        } else {
             holder.bookmark.setImageResource(R.drawable.bookmark)
         }
         holder.bookmark.setOnClickListener {
-            var res = R.drawable.bookmark
-            if (api.updateBookmarks(course)){
-                res = R.drawable.bookmark_selected
-                animHelper.animate(context, holder.bookmark, R.anim.bookmarked_anim_part1, object : AnimHelper.EndAction{
-                    override fun endAction() {
-                        holder.bookmark.setImageResource(res)
-                        val anim  = AnimationUtils.loadAnimation(context, R.anim.bookmarked_anim_part2)
-                        holder.bookmark.startAnimation(anim)
-                    }
+            if (api.getUser(api.getLoggedInUser()!!.email)!!.bookMarks.contains(course)) {
+                val builder = AlertDialog.Builder(context)
+                builder.setMessage("Do you want to remove the course from bookmarks?")
 
-                })
-            }else{
-                // TODO : add alert dialog
-                animHelper.animate(context, holder.bookmark, R.anim.unbookmarked_anim_part1, object : AnimHelper.EndAction{
-                    override fun endAction() {
-                        holder.bookmark.setImageResource(res)
-                        val anim  = AnimationUtils.loadAnimation(context, R.anim.unbookmarked_anim_part2)
-                        holder.bookmark.startAnimation(anim)
-                    }
-
-                })
-            }
-        }
-        holder.itemView.setOnClickListener {
-            animHelper.animate(context, holder.itemView, R.anim.button_press_anim, object : AnimHelper.EndAction{
-                override fun endAction() {
-                    onPressed.onPressed(course)
+                builder.setPositiveButton("Yes") { dialog, which ->
+                    animHelper.animate(
+                        context,
+                        holder.bookmark,
+                        R.anim.unbookmarked_anim_part1,
+                        object : AnimHelper.EndAction {
+                            override fun endAction() {
+                                holder.bookmark.setImageResource(R.drawable.bookmark)
+                                val anim = AnimationUtils.loadAnimation(
+                                    context,
+                                    R.anim.unbookmarked_anim_part2
+                                )
+                                holder.bookmark.startAnimation(anim)
+                                api.updateBookmarks(course)
+                            }
+                        })
                 }
 
-            })
+                builder.setNegativeButton("No") { dialog, which ->
+                }
+                builder.show()
+                return@setOnClickListener
+            }
+            api.updateBookmarks(course)
+            animHelper.animate(
+                context,
+                holder.bookmark,
+                R.anim.bookmarked_anim_part1,
+                object : AnimHelper.EndAction {
+                    override fun endAction() {
+                        holder.bookmark.setImageResource(R.drawable.bookmark_selected)
+                        val anim =
+                            AnimationUtils.loadAnimation(context, R.anim.bookmarked_anim_part2)
+                        holder.bookmark.startAnimation(anim)
+                    }
+
+                })
+
+        }
+        holder.itemView.setOnClickListener {
+            animHelper.animate(
+                context,
+                holder.itemView,
+                R.anim.button_press_anim,
+                object : AnimHelper.EndAction {
+                    override fun endAction() {
+                        onPressed.onPressed(course)
+                    }
+
+                })
         }
     }
 
     override fun getItemCount(): Int {
         return courses.size
     }
-    interface OnClick{
+
+    interface OnClick {
         fun onPressed(course: Course)
     }
 

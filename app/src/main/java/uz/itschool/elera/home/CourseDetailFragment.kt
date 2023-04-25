@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.appcompat.app.AlertDialog
 import coil.load
 import com.google.android.material.tabs.TabLayoutMediator
 import uz.itschool.elera.R
@@ -72,28 +73,48 @@ class CourseDetailFragment : Fragment() {
         }
         binding.courseDetailStudentsCount.text = api.getStudentsCount(param1!!).toString() + " students"
         binding.homeCourseItemBookmark.setOnClickListener {
-            var res = R.drawable.bookmark
-            if (api.updateBookmarks(param1!!)){
-                res = R.drawable.bookmark_selected
-                animHelper.animate(requireContext(), binding.homeCourseItemBookmark, R.anim.bookmarked_anim_part1, object : AnimHelper.EndAction{
-                    override fun endAction() {
-                        binding.homeCourseItemBookmark.setImageResource(res)
-                        val anim  = AnimationUtils.loadAnimation(context, R.anim.bookmarked_anim_part2)
-                        binding.homeCourseItemBookmark.startAnimation(anim)
-                    }
+            if (api.getUser(api.getLoggedInUser()!!.email)!!.bookMarks.contains(param1!!)) {
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setMessage("Do you want to remove the course from bookmarks?")
 
-                })
-            }else{
-                // TODO : add alert dialog
-                animHelper.animate(requireContext(), binding.homeCourseItemBookmark, R.anim.unbookmarked_anim_part1, object : AnimHelper.EndAction{
-                    override fun endAction() {
-                        binding.homeCourseItemBookmark.setImageResource(res)
-                        val anim  = AnimationUtils.loadAnimation(context, R.anim.unbookmarked_anim_part2)
-                        binding.homeCourseItemBookmark.startAnimation(anim)
-                    }
+                builder.setPositiveButton("Yes") { dialog, which ->
+                    animHelper.animate(
+                        requireContext(),
+                        binding.homeCourseItemBookmark,
+                        R.anim.unbookmarked_anim_part1,
+                        object : AnimHelper.EndAction {
+                            override fun endAction() {
+                                binding.homeCourseItemBookmark.setImageResource(R.drawable.bookmark)
+                                val anim = AnimationUtils.loadAnimation(
+                                    context,
+                                    R.anim.unbookmarked_anim_part2
+                                )
+                                binding.homeCourseItemBookmark.startAnimation(anim)
+                                api.updateBookmarks(param1!!)
+                            }
+                        })
+                }
 
-                })
+                builder.setNegativeButton("No") { dialog, which ->
+                }
+                builder.show()
+                return@setOnClickListener
             }
+            api.updateBookmarks(param1!!)
+            animHelper.animate(
+                requireContext(),
+                binding.homeCourseItemBookmark,
+                R.anim.bookmarked_anim_part1,
+                object : AnimHelper.EndAction {
+                    override fun endAction() {
+                        binding.homeCourseItemBookmark.setImageResource(R.drawable.bookmark_selected)
+                        val anim =
+                            AnimationUtils.loadAnimation(context, R.anim.bookmarked_anim_part2)
+                        binding.homeCourseItemBookmark.startAnimation(anim)
+                    }
+
+                })
+
         }
         binding.courseDetailBackArrow.setOnClickListener {
             animHelper.animate(requireContext(), binding.courseDetailBackArrow, R.anim.button_press_anim, object :

@@ -38,9 +38,7 @@ class BookmarksFragment : Fragment() {
         binding.bookmarksReycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.bookmarksReycler.adapter = CourseRecyclerAdapter(api.getBookmarks(), api, animHelper, requireContext(), object : CourseRecyclerAdapter.OnClick{
             override fun onPressed(course: Course) {
-                val bundle = Bundle()
-                bundle.putSerializable("param1", course)
-                findNavController().navigate(R.id.action_bodyFragment_to_courseDetailFragment, bundle)
+                findNavController().navigate(R.id.action_bodyFragment_to_courseDetailFragment)
             }
 
         })

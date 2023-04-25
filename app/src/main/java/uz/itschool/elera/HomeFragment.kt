@@ -63,6 +63,20 @@ class HomeFragment : Fragment() {
                     }
                 })
         }
+
+        binding.searchIv.setOnClickListener {
+            animHelper.animate(
+                requireContext(),
+                binding.searchIv,
+                R.anim.button_press_anim,
+                object : AnimHelper.EndAction {
+                    override fun endAction() {
+                        findNavController().navigate(R.id.action_bodyFragment_to_searchFragment)
+                    }
+                })
+        }
+
+
         binding.offerView.setOnClickListener {
             val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.button_press_anim)
             binding.offerView.startAnimation(animation)
@@ -75,7 +89,7 @@ class HomeFragment : Fragment() {
                 R.anim.button_press_anim,
                 object : AnimHelper.EndAction {
                     override fun endAction() {
-                        // TODO: go to all mentors
+                        findNavController().navigate(R.id.action_bodyFragment_to_allMentorsFragment)
                     }
                 })
         }
@@ -86,7 +100,7 @@ class HomeFragment : Fragment() {
                 R.anim.button_press_anim,
                 object : AnimHelper.EndAction {
                     override fun endAction() {
-                        // TODO: go to all courses
+                        findNavController().navigate(R.id.action_bodyFragment_to_allCoursesFragment)
                     }
                 })
         }

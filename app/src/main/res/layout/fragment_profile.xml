@@ -12,8 +12,9 @@
         android:layout_height="wrap_content">
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_photo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="320dp"
+            android:layout_height="320dp"
             android:layout_marginHorizontal="64dp"
             android:layout_marginTop="32dp"
             android:src="@drawable/user"
@@ -47,7 +48,7 @@
             <TextView
                 android:textColor="@color/text_color2"
                 android:textSize="20sp"
-                android:text="@string/email_"
+                android:text="@string/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
