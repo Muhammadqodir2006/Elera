@@ -48,10 +48,10 @@ class SignUpFragment : Fragment() {
             val password = binding.signUpPasswordEditText.text.toString().trim()
             val user = User("Template", email, password, "Template", "Template", true, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTO9_01SZ7hFnlt1TGOQG_pQ1xe0PY2R9E9A&usqp=CAU", arrayListOf())
             if (api.registerUser(user)){
-                Toast.makeText(requireContext(), "Successfully registered", Toast.LENGTH_LONG).show()
                 val bundle = Bundle()
                 bundle.putSerializable("param1", user)
                 findNavController().navigate(R.id.action_signUpFragment_to_bodyFragment, bundle)
+                Toast.makeText(requireContext(), "Successfully registered", Toast.LENGTH_LONG).show()
             }else{
                 Toast.makeText(requireContext(), "Email already registered", Toast.LENGTH_LONG).show()
             }
