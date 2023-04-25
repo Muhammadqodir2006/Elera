@@ -16,20 +16,20 @@ import uz.itschool.elera.home.CourseRecyclerAdapter
 import uz.itschool.elera.home.MentorsRecyclerAdapter
 import uz.itschool.elera.util.*
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+//private const val ARG_PARAM1 = "param1"
+//private const val ARG_PARAM2 = "param2"
 
 
 class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: User? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getSerializable(ARG_PARAM1) as User
-        }
-    }
+//    private var param1: User? = null
+//
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        arguments?.let {
+//            param1 = it.getSerializable(ARG_PARAM1) as User
+//        }
+//    }
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
         val animHelper = AnimHelper.newInstance()
         val api = API.newInstance(requireContext())
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
-
+        val curUser = api.getLoggedInUser()!!
 
         binding.bookMarkIv.setOnClickListener {
             animHelper.animate(
@@ -138,19 +138,19 @@ class HomeFragment : Fragment() {
                 }
             })
 
-        binding.homeUserImageIv.load(param1!!.image)
-        binding.homeUserName.text = param1!!.firstName + " " + param1!!.lastName
+        binding.homeUserImageIv.load(curUser.image)
+        binding.homeUserName.text = curUser.firstName + " " + curUser.lastName
 
         return binding.root
     }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: User) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putSerializable(ARG_PARAM1, param1)
-                }
-            }
-    }
+//
+//    companion object {
+//        @JvmStatic
+//        fun newInstance(param1: User) =
+//            HomeFragment().apply {
+//                arguments = Bundle().apply {
+//                    putSerializable(ARG_PARAM1, param1)
+//                }
+//            }
+//    }
 }

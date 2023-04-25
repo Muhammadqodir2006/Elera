@@ -14,14 +14,14 @@ private const val ARG_PARAM1 = "param1"
 
 class BodyFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: User? = null
+//    private var param1: User? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getSerializable(ARG_PARAM1) as User
-        }
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        arguments?.let {
+//            param1 = it.getSerializable(ARG_PARAM1) as User
+//        }
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,11 +34,11 @@ class BodyFragment : Fragment() {
             childFragmentManager,
             lifecycle,
             arrayListOf(
-                HomeFragment.newInstance(param1!!),
+                HomeFragment(),
                 MyCourseFragment(),
                 InboxFragment(),
                 StoreFragment(),
-                ProfileFragment.newInstance(param1!!)
+                ProfileFragment()
             )
         )
 
@@ -75,13 +75,13 @@ class BodyFragment : Fragment() {
         return binding.root
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: User) =
-            BodyFragment().apply {
-                arguments = Bundle().apply {
-                    putSerializable(ARG_PARAM1, param1)
-                }
-            }
-    }
+//    companion object {
+//        @JvmStatic
+//        fun newInstance(param1: User) =
+//            BodyFragment().apply {
+//                arguments = Bundle().apply {
+//                    putSerializable(ARG_PARAM1, param1)
+//                }
+//            }
+//    }
 }
