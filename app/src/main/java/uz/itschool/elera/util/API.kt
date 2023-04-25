@@ -14,7 +14,6 @@ class API private constructor(context: Context) {
     private val usersString = "users"
     private val coursesString = "courses"
     private val reviewsString = "reviews"
-    private val bookmarkString = "bookmarks"
     private val loggedInUser = "loggedInUser"
 
 
@@ -46,10 +45,10 @@ class API private constructor(context: Context) {
     }
 
     fun setLoggedInUser(user: User) {
-        edit.putString(loggedInUser, gson.toJson(user)).commit()
+        edit.putString(loggedInUser, gson.toJson(user)).apply()
     }
     fun logOut() {
-        edit.putString(loggedInUser, gson.toJson("")).commit()
+        edit.putString(loggedInUser, gson.toJson("")).apply()
     }
 
     fun registerUser(user: User): Boolean {
@@ -60,7 +59,7 @@ class API private constructor(context: Context) {
             }
         }
         users.add(user)
-        edit.putString(usersString, gson.toJson(users)).commit()
+        edit.putString(usersString, gson.toJson(users)).apply()
         setLoggedInUser(user)
         return true
     }
@@ -185,7 +184,6 @@ class API private constructor(context: Context) {
     }
 
     fun updateBookmarks(course: Course): Boolean {
-        val user = getLoggedInUser()!!
         val bookmarks = getBookmarks()
         return if (bookmarks.contains(course)) {
             bookmarks.remove(course)
@@ -206,7 +204,7 @@ class API private constructor(context: Context) {
                 break
             }
         }
-        edit.putString(usersString, gson.toJson(users)).commit()
+        edit.putString(usersString, gson.toJson(users)).apply()
     }
 
 

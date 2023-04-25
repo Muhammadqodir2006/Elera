@@ -41,9 +41,7 @@ class SignInFragment : Fragment() {
                 return@setOnClickListener
             }
             api.setLoggedInUser(user)
-            val bundle = Bundle()
-            bundle.putSerializable("param1", user)
-            findNavController().navigate(R.id.action_signInFragment_to_bodyFragment, bundle)
+            findNavController().navigate(R.id.action_signInFragment_to_bodyFragment)
             Toast.makeText(requireContext(), "Successfully logged in", Toast.LENGTH_LONG).show()
         }
 
