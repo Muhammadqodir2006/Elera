@@ -58,6 +58,15 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@android:anim/slide_out_right"
             app:popExitAnim="@android:anim/slide_in_left" />
+        <action
+            android:id="@+id/action_bodyFragment_to_allCoursesFragment"
+            app:destination="@id/allCoursesFragment" />
+        <action
+            android:id="@+id/action_bodyFragment_to_allMentorsFragment"
+            app:destination="@id/allMentorsFragment" />
+        <action
+            android:id="@+id/action_bodyFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/notificationsFragment"
@@ -132,5 +141,35 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@android:anim/slide_out_right"
             app:popExitAnim="@android:anim/slide_in_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/allCoursesFragment"
+        android:name="uz.itschool.elera.more.AllCoursesFragment"
+        android:label="fragment_all_courses"
+        tools:layout="@layout/fragment_all_courses" >
+        <action
+            android:id="@+id/action_allCoursesFragment_to_courseDetailFragment"
+            app:destination="@id/courseDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allMentorsFragment"
+        android:name="uz.itschool.elera.more.AllMentorsFragment"
+        android:label="fragment_all_mentors"
+        tools:layout="@layout/fragment_all_mentors" >
+        <action
+            android:id="@+id/action_allMentorsFragment_to_mentorFragment"
+            app:destination="@id/mentorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="uz.itschool.elera.more.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_courseDetailFragment"
+            app:destination="@id/courseDetailFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_mentorFragment"
+            app:destination="@id/mentorFragment" />
     </fragment>
 </navigation>

@@ -24,7 +24,6 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentProfileBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
