@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.navigation.fragment.findNavController
 import coil.load
 import okhttp3.internal.userAgent
@@ -15,14 +17,7 @@ import uz.itschool.elera.util.User
 
 private const val ARG_PARAM1 = "param1"
 class ProfileFragment : Fragment() {
-//    private var param1: User? = null
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            param1 = it.getSerializable(ARG_PARAM1) as User
-//        }
-//    }
+
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -33,9 +28,18 @@ class ProfileFragment : Fragment() {
         val curUser = api.getLoggedInUser()!!
         val binding = FragmentProfileBinding.inflate(inflater, container, false)
         binding.profileLogOutButton.setOnClickListener {
-            // TODO: Warning dialog
-            api.logOut()
-            findNavController().navigate(R.id.action_bodyFragment_to_welcomeFragment)
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setMessage("Do you really want to log out?")
+
+            builder.setPositiveButton("Yes") { dialog, which ->
+                api.logOut()
+                findNavController().navigate(R.id.action_bodyFragment_to_welcomeFragment)
+            }
+
+            builder.setNegativeButton("No") { dialog, which ->
+            }
+            builder.show()
+
         }
         binding.profilePhoto.load(curUser.image)
         binding.profileName.text = curUser.firstName + " " + curUser.lastName
@@ -43,13 +47,5 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
-//    companion object {
-//        @JvmStatic
-//        fun newInstance(param1: User) =
-//            ProfileFragment().apply {
-//                arguments = Bundle().apply {
-//                    putSerializable(ARG_PARAM1, param1)
-//                }
-//            }
-//    }
+
 }

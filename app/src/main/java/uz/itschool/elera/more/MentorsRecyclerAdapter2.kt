@@ -16,7 +16,7 @@ import uz.itschool.elera.util.AnimHelper
 import uz.itschool.elera.util.Mentor
 
 class MentorsRecyclerAdapter2(val context: Context, val api: API, val itemClick: ItemClick, val animHelper: AnimHelper): RecyclerView.Adapter<MentorsRecyclerAdapter2.ViewHolder>() {
-    val mentors = api.getMentors()
+    var mentors = api.getMentors()
 
     inner class ViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
         val imagE = itemView.findViewById<ImageView>(R.id.mentor_item2_image)

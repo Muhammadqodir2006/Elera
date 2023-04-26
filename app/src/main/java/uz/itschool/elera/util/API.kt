@@ -27,6 +27,34 @@ class API private constructor(context: Context) {
         }
     }
 
+    fun searchCourses(key:String): ArrayList<Course> {
+        val courses = getCourses()
+        val out = arrayListOf<Course>()
+        for (i in courses){
+            if (i.name.contains(key.trim(), true)){
+                out.add(i)
+            }
+        }
+        for (i in courses){
+            if (i.category.namE.contains(key.trim(), true) && !out.contains(i)){
+                out.add(i)
+            }
+        }
+        return out
+    }
+    fun searchMentors(key:String): ArrayList<Mentor> {
+        val mentors = getMentors()
+        val out = arrayListOf<Mentor>()
+        for (i in mentors){
+            if (i.firstName.contains(key.trim(), true)){
+                out.add(i)
+            }
+            else if (i.lastName.contains(key.trim(), true)){
+                out.add(i)
+            }
+        }
+        return out
+    }
     fun getUser(emailUsername: String): User? {
         val users = getUsers()
         for (i in users) {

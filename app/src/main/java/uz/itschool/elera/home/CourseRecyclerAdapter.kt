@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -57,6 +56,10 @@ class CourseRecyclerAdapter(
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+
+        val animation = AnimationUtils.loadAnimation(context, R.anim.all_appear)
+        holder.itemView.startAnimation(animation)
+
         val course = courses[position]
         holder.image.load(course.image) {
             placeholder(R.drawable.img)
